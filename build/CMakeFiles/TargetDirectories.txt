@@ -1,0 +1,4 @@
+/home/a/vscode/card_battle/build/CMakeFiles/card_battle_lib.dir
+/home/a/vscode/card_battle/build/CMakeFiles/card_battle_tests.dir
+/home/a/vscode/card_battle/build/CMakeFiles/edit_cache.dir
+/home/a/vscode/card_battle/build/CMakeFiles/rebuild_cache.dir

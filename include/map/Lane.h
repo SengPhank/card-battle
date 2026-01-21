@@ -1,0 +1,20 @@
+#pragma once
+#include "cards/Card.h"
+#include <string>
+
+class GameManager;
+
+class Lane {
+private:
+    GameManager* GM;
+    int lane_number;    // For sorting (lane 1 goes first, etc)
+    Card* plr1_entity;  // Could possible add multiple cards to more lane later. for now, 1 each
+    Card* plr2_entity;
+public:
+    Lane(GameManager* gm, int laneNumber);       // Initializes empty lane
+    bool placeCard(int player, Card* card);      // Returns true or false if successful
+    void enactLane();                                // Play this lane
+
+    int getLane() const;
+    ~Lane();
+};

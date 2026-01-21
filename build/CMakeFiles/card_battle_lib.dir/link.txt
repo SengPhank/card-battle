@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcard_battle_lib.a CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o
+/usr/bin/ranlib libcard_battle_lib.a

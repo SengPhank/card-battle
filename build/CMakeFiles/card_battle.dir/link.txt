@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcard_battle.a CMakeFiles/card_battle.dir/src/GameManager.cpp.o
+/usr/bin/ranlib libcard_battle.a

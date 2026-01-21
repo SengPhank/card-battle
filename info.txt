@@ -1,0 +1,4 @@
+Card attacks each other using hp, atk and abilities
+Last player to lose all their HP wins
+Take enough damage and you unlock your special ability. 
+Damage (even the smallest) increases your "rage" meter by x amount, determining when you can use special ability
