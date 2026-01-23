@@ -3,9 +3,9 @@
 #include <vector>
 class Card {
 protected:
-    int cardID; // 0-number of cards
     int health;
     int attack;
+    int cost;
     std::string name;
     std::vector<std::string> abilities;
 
@@ -14,14 +14,16 @@ protected:
     // string description
 
 public:
-    Card(int id, std::string name, int health, int atk, std::vector<std::string> abilities);
+    Card(std::string name, int health, int atk, int cost, std::vector<std::string> abilities);
     void takeDamage(int atk);
+    Card* clone();
     
     // Encapsulation
-    int getID() const;
     int getDamage() const;
     int getHealth() const;
+    int getCost() const;
     std::string getName() const;
     std::vector<std::string> getAbilities() const;
+
     ~Card();
 };

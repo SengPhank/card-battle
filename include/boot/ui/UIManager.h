@@ -14,6 +14,7 @@ private:
     
 public:
     UIManager(wxFrame* mainWindow, const std::vector<wxPanel*> panels);
+    // TODO: Back page (using stack)
     void showPanel(wxPanel* panel);     // Show one but all panel
     ~UIManager();
 };

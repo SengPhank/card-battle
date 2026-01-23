@@ -14,12 +14,15 @@ Lane::Lane(MatchManager* gm, int laneNumber) : GM(gm), lane_number(laneNumber) {
 }
 
 bool Lane::placeCard(int player, Card* card) {
+    // Verify player and entity
     if (player == 1) {
         if (plr1_entity) return false;
         plr1_entity = card;
-    } else {
+    } else if (player == 2) {
         if (plr2_entity) return false;
         plr2_entity = card;
+    } else { // invalid player
+        return false;
     }
     return true;
 }

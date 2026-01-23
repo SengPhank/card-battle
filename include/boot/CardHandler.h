@@ -2,18 +2,19 @@
 #pragma once
 
 #include "cards/Card.h"
-#include <map> 
-#include <nlohmann/json.hpp> // Include the nlohmann/json header
+#include <vector> 
+#include <nlohmann/json.hpp> // Include the nlohmann/json heade
 
 class CardHandler {
 private:
     // Ordered map for sorting by ID with UI
-    std::map<int, Card> allCards;
+    std::vector<Card> allCards;
 public:
     CardHandler();
-    
+    Card getRandomCard();
+
     // Encapsulation
-    std::map<int, Card> getCards() const;
+    std::vector<Card> getCards() const;
     int getTotalCards() const;
 
     ~CardHandler();

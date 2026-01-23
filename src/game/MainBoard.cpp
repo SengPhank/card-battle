@@ -11,6 +11,7 @@ MainBoard::MainBoard(MatchManager* gm, int numLanes) : GM(gm) {
 }
 
 bool MainBoard::playCard(int player, int lane, Card* card) {
+    // Verify lane
     if (lane < 0 || lane >= Lanes.size()) return false;
     return Lanes[lane]->placeCard(player, card);
 }

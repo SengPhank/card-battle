@@ -7,22 +7,26 @@ std::string name;
 std::vector<std::string> abilities;
 */
 
-Card::Card(int id, std::string name, int health, int atk, std::vector<std::string> abilities) 
-: health(health), attack(atk), name(name), cardID(id), abilities(abilities) {}
+Card::Card(std::string name, int health, int atk, int cost, std::vector<std::string> abilities) 
+: health(health), attack(atk), name(name), cost(cost), abilities(abilities) {}
 
 void Card::takeDamage(int atk) {
     health -= atk;
 }
+Card* Card::clone() {
+    Card* newCard = new Card(name, health, attack, cost, abilities);
+    return newCard;
+}
 
 // Encapsulation
-int Card::getID() const {
-    return this->cardID;
-}
 int Card::getDamage() const {
     return this->attack;
 }
 int Card::getHealth() const {
     return this->health;
+}
+int Card::getCost() const {
+    return this->cost;
 }
 std::string Card::getName() const {
     return this->name;
