@@ -6,7 +6,7 @@
 class MainWindow : public wxFrame {
 private:
     MainMenuPanel* mainMenuPanel;
-
+    UIManager* uiManager;
 public:
     MainWindow();
 };

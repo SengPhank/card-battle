@@ -14,6 +14,6 @@ private:
     
 public:
     UIManager(wxFrame* mainWindow, const std::vector<wxPanel*> panels);
-    void showPanel(wxPanel* panel); // Show one but all
+    void showPanel(wxPanel* panel);     // Show one but all panel
     ~UIManager();
 };

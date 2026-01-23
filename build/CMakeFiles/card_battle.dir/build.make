@@ -93,6 +93,24 @@ card_battle_EXTERNAL_OBJECTS =
 card_battle: CMakeFiles/card_battle.dir/tests/main.cpp.o
 card_battle: CMakeFiles/card_battle.dir/build.make
 card_battle: libcard_battle_lib.a
+card_battle: /usr/local/lib/libwx_gtk3u_core-3.2.a
+card_battle: /usr/local/lib/libwx_baseu-3.2.a
+card_battle: /usr/lib/x86_64-linux-gnu/libSM.so
+card_battle: /usr/lib/x86_64-linux-gnu/libICE.so
+card_battle: /usr/lib/x86_64-linux-gnu/libX11.so
+card_battle: /usr/lib/x86_64-linux-gnu/libXext.so
+card_battle: /usr/lib/x86_64-linux-gnu/libXtst.so
+card_battle: /usr/lib/x86_64-linux-gnu/libxkbcommon.so
+card_battle: /usr/lib/x86_64-linux-gnu/libjpeg.so
+card_battle: /usr/lib/x86_64-linux-gnu/libpng.so
+card_battle: /usr/lib/x86_64-linux-gnu/libz.so
+card_battle: /usr/lib/x86_64-linux-gnu/libtiff.so
+card_battle: /usr/lib/x86_64-linux-gnu/libz.so
+card_battle: /usr/lib/x86_64-linux-gnu/libpcre2-32.so
+card_battle: /usr/lib/x86_64-linux-gnu/libc.so
+card_battle: /usr/lib/x86_64-linux-gnu/libtiff.so
+card_battle: /usr/lib/x86_64-linux-gnu/libpcre2-32.so
+card_battle: /usr/lib/x86_64-linux-gnu/libc.so
 card_battle: CMakeFiles/card_battle.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable card_battle"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/card_battle.dir/link.txt --verbose=$(VERBOSE)
