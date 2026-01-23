@@ -40,4 +40,5 @@ add_executable(card_battle
 
 target_link_libraries(card_battle
     PRIVATE card_battle_lib
+    ${wxWidgets_LIBRARIES}
 )

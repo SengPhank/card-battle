@@ -3,7 +3,7 @@
 # MAKE FILE VARIABLES
 BUILD_DIR := build
 TARGET := card_battle
-CMAKE_FLAGS_DEV := -DUSE_SYSTEM_WXWIDGETS=ON -WARNINGS=ON
+CMAKE_FLAGS_DEV := -DUSE_SYSTEM_WXWIDGETS=ON
 
 # Basic run (Does not use warnings and utlizes submodule)
 run: CMakeLists.txt
