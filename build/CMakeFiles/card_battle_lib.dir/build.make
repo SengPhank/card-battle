@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/a/vscode/card_battle
+CMAKE_SOURCE_DIR = /home/acid/Downloads/card-battle
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/a/vscode/card_battle/build
+CMAKE_BINARY_DIR = /home/acid/Downloads/card-battle/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/card_battle_lib.dir/depend.make
@@ -69,109 +69,199 @@ include CMakeFiles/card_battle_lib.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/card_battle_lib.dir/flags.make
 
-CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
-CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o: /home/a/vscode/card_battle/src/GameManager.cpp
-CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/a/vscode/card_battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o -c /home/a/vscode/card_battle/src/GameManager.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o: /home/acid/Downloads/card-battle/src/boot/CardHandler.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o -c /home/acid/Downloads/card-battle/src/boot/CardHandler.cpp
 
-CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/a/vscode/card_battle/src/GameManager.cpp > CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.i
+CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/boot/CardHandler.cpp > CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.i
 
-CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/a/vscode/card_battle/src/GameManager.cpp -o CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.s
+CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/boot/CardHandler.cpp -o CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.s
 
-CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
-CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o: /home/a/vscode/card_battle/src/map/Lane.cpp
-CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/a/vscode/card_battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o -c /home/a/vscode/card_battle/src/map/Lane.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o: /home/acid/Downloads/card-battle/src/boot/ui/GamePanel.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o -c /home/acid/Downloads/card-battle/src/boot/ui/GamePanel.cpp
 
-CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/a/vscode/card_battle/src/map/Lane.cpp > CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.i
+CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/boot/ui/GamePanel.cpp > CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.i
 
-CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/a/vscode/card_battle/src/map/Lane.cpp -o CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.s
+CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/boot/ui/GamePanel.cpp -o CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.s
 
-CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
-CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o: /home/a/vscode/card_battle/src/map/MainBoard.cpp
-CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/a/vscode/card_battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o -c /home/a/vscode/card_battle/src/map/MainBoard.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o: /home/acid/Downloads/card-battle/src/boot/ui/MainMenuPanel.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o -c /home/acid/Downloads/card-battle/src/boot/ui/MainMenuPanel.cpp
 
-CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/a/vscode/card_battle/src/map/MainBoard.cpp > CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.i
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/boot/ui/MainMenuPanel.cpp > CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.i
 
-CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/a/vscode/card_battle/src/map/MainBoard.cpp -o CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.s
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/boot/ui/MainMenuPanel.cpp -o CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.s
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o: /home/acid/Downloads/card-battle/src/boot/ui/MainWindow.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o -c /home/acid/Downloads/card-battle/src/boot/ui/MainWindow.cpp
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/boot/ui/MainWindow.cpp > CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.i
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/boot/ui/MainWindow.cpp -o CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.s
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o: /home/acid/Downloads/card-battle/src/boot/ui/SettingsPanel.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o -c /home/acid/Downloads/card-battle/src/boot/ui/SettingsPanel.cpp
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/boot/ui/SettingsPanel.cpp > CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.i
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/boot/ui/SettingsPanel.cpp -o CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.s
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o: /home/acid/Downloads/card-battle/src/boot/ui/UIManager.cpp
+CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o -c /home/acid/Downloads/card-battle/src/boot/ui/UIManager.cpp
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/boot/ui/UIManager.cpp > CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.i
+
+CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/boot/ui/UIManager.cpp -o CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.s
+
+CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o: /home/acid/Downloads/card-battle/src/game/MatchManager.cpp
+CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o -c /home/acid/Downloads/card-battle/src/game/MatchManager.cpp
+
+CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/game/MatchManager.cpp > CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.i
+
+CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/game/MatchManager.cpp -o CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.s
+
+CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o: /home/acid/Downloads/card-battle/src/game/Lane.cpp
+CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o -c /home/acid/Downloads/card-battle/src/game/Lane.cpp
+
+CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/game/Lane.cpp > CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.i
+
+CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/game/Lane.cpp -o CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.s
+
+CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
+CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o: /home/acid/Downloads/card-battle/src/game/MainBoard.cpp
+CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o -c /home/acid/Downloads/card-battle/src/game/MainBoard.cpp
+
+CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/game/MainBoard.cpp > CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.i
+
+CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/game/MainBoard.cpp -o CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.s
 
 CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
-CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o: /home/a/vscode/card_battle/src/cards/Card.cpp
+CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o: /home/acid/Downloads/card-battle/src/cards/Card.cpp
 CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/a/vscode/card_battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o -c /home/a/vscode/card_battle/src/cards/Card.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o -c /home/acid/Downloads/card-battle/src/cards/Card.cpp
 
 CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/a/vscode/card_battle/src/cards/Card.cpp > CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/cards/Card.cpp > CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.i
 
 CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/a/vscode/card_battle/src/cards/Card.cpp -o CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/cards/Card.cpp -o CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.s
 
 CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
-CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o: /home/a/vscode/card_battle/src/characters/Character.cpp
+CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o: /home/acid/Downloads/card-battle/src/characters/Character.cpp
 CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/a/vscode/card_battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o -c /home/a/vscode/card_battle/src/characters/Character.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o -c /home/acid/Downloads/card-battle/src/characters/Character.cpp
 
 CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/a/vscode/card_battle/src/characters/Character.cpp > CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/characters/Character.cpp > CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.i
 
 CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/a/vscode/card_battle/src/characters/Character.cpp -o CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/characters/Character.cpp -o CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.s
 
 CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
-CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o: /home/a/vscode/card_battle/src/characters/Mage.cpp
+CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o: /home/acid/Downloads/card-battle/src/characters/Mage.cpp
 CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/a/vscode/card_battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o -c /home/a/vscode/card_battle/src/characters/Mage.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o -c /home/acid/Downloads/card-battle/src/characters/Mage.cpp
 
 CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/a/vscode/card_battle/src/characters/Mage.cpp > CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/characters/Mage.cpp > CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.i
 
 CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/a/vscode/card_battle/src/characters/Mage.cpp -o CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/characters/Mage.cpp -o CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.s
 
 CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o: CMakeFiles/card_battle_lib.dir/flags.make
-CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o: /home/a/vscode/card_battle/src/characters/Tank.cpp
+CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o: /home/acid/Downloads/card-battle/src/characters/Tank.cpp
 CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o: CMakeFiles/card_battle_lib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/a/vscode/card_battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o -c /home/a/vscode/card_battle/src/characters/Tank.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o -MF CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o.d -o CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o -c /home/acid/Downloads/card-battle/src/characters/Tank.cpp
 
 CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/a/vscode/card_battle/src/characters/Tank.cpp > CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/acid/Downloads/card-battle/src/characters/Tank.cpp > CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.i
 
 CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/a/vscode/card_battle/src/characters/Tank.cpp -o CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/acid/Downloads/card-battle/src/characters/Tank.cpp -o CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.s
 
 # Object files for target card_battle_lib
 card_battle_lib_OBJECTS = \
-"CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o" \
-"CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o" \
-"CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o" \
+"CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o" \
 "CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o" \
 "CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o" \
 "CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o" \
@@ -180,16 +270,22 @@ card_battle_lib_OBJECTS = \
 # External object files for target card_battle_lib
 card_battle_lib_EXTERNAL_OBJECTS =
 
-libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o
-libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o
-libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o
+libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o
 libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o
 libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/characters/Character.cpp.o
 libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o
 libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o
 libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/build.make
 libcard_battle_lib.a: CMakeFiles/card_battle_lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/a/vscode/card_battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libcard_battle_lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/acid/Downloads/card-battle/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX static library libcard_battle_lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/card_battle_lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/card_battle_lib.dir/link.txt --verbose=$(VERBOSE)
 
@@ -202,6 +298,6 @@ CMakeFiles/card_battle_lib.dir/clean:
 .PHONY : CMakeFiles/card_battle_lib.dir/clean
 
 CMakeFiles/card_battle_lib.dir/depend:
-	cd /home/a/vscode/card_battle/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/a/vscode/card_battle /home/a/vscode/card_battle /home/a/vscode/card_battle/build /home/a/vscode/card_battle/build /home/a/vscode/card_battle/build/CMakeFiles/card_battle_lib.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/acid/Downloads/card-battle/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/acid/Downloads/card-battle /home/acid/Downloads/card-battle /home/acid/Downloads/card-battle/build /home/acid/Downloads/card-battle/build /home/acid/Downloads/card-battle/build/CMakeFiles/card_battle_lib.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/card_battle_lib.dir/depend
 

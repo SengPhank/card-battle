@@ -1,5 +1,5 @@
-#include "GameManager.h"
-#include "map/Lane.h"
+#include "game/MatchManager.h"
+#include "game/Lane.h"
 #include "cards/Card.h"
 #include <string>
 #include <iostream>
@@ -8,7 +8,7 @@
 // Card* plr1_entity; 
 // Card* plr2_entity;
     
-Lane::Lane(GameManager* gm, int laneNumber) : GM(gm), lane_number(laneNumber) {
+Lane::Lane(MatchManager* gm, int laneNumber) : GM(gm), lane_number(laneNumber) {
     plr1_entity = nullptr;
     plr2_entity = nullptr;
 }

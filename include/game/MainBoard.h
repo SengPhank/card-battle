@@ -1,17 +1,17 @@
 #pragma once
-#include "map/Lane.h"
+#include "game/Lane.h"
 #include "cards/Card.h"
 #include <vector>
 
-class GameManager;
+class MatchManager;
 
 class MainBoard {
 private:
-    GameManager* GM;
+    MatchManager* GM;
     std::vector<Lane*> Lanes;
     std::vector<Card*> allCards;
 public:
-    MainBoard(GameManager* gm, int numLanes); 
+    MainBoard(MatchManager* gm, int numLanes); 
     bool playCard(int player, int lane, Card* card);
     void enactBoard();
     ~MainBoard();

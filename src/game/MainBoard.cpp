@@ -1,9 +1,9 @@
-#include "map/MainBoard.h"
+#include "game/MainBoard.h"
 #include <iostream>
 // std::vector<Lane*> Lanes;
 // std::vector<Card*> allCards;
 
-MainBoard::MainBoard(GameManager* gm, int numLanes) : GM(gm) {
+MainBoard::MainBoard(MatchManager* gm, int numLanes) : GM(gm) {
     for (int i = 0; i < numLanes; i++) {
         Lane* newLane = new Lane(GM, i);
         Lanes.push_back(newLane);

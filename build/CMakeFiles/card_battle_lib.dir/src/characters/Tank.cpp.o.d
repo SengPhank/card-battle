@@ -1,8 +1,8 @@
 CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.o: \
- /home/a/vscode/card_battle/src/characters/Tank.cpp \
+ /home/acid/Downloads/card-battle/src/characters/Tank.cpp \
  /usr/include/stdc-predef.h \
- /home/a/vscode/card_battle/include/characters/Tank.h \
- /home/a/vscode/card_battle/include/characters/Character.h \
+ /home/acid/Downloads/card-battle/include/characters/Tank.h \
+ /home/acid/Downloads/card-battle/include/characters/Character.h \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

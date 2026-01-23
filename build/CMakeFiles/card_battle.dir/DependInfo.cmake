@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/a/vscode/card_battle/src/GameManager.cpp" "CMakeFiles/card_battle.dir/src/GameManager.cpp.o" "gcc" "CMakeFiles/card_battle.dir/src/GameManager.cpp.o.d"
+  "/home/acid/Downloads/card-battle/tests/main.cpp" "CMakeFiles/card_battle.dir/tests/main.cpp.o" "gcc" "CMakeFiles/card_battle.dir/tests/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

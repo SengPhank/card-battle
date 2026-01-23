@@ -1,8 +1,8 @@
 CMakeFiles/card_battle_lib.dir/src/characters/Mage.cpp.o: \
- /home/a/vscode/card_battle/src/characters/Mage.cpp \
+ /home/acid/Downloads/card-battle/src/characters/Mage.cpp \
  /usr/include/stdc-predef.h \
- /home/a/vscode/card_battle/include/characters/Mage.h \
- /home/a/vscode/card_battle/include/characters/Character.h \
+ /home/acid/Downloads/card-battle/include/characters/Mage.h \
+ /home/acid/Downloads/card-battle/include/characters/Character.h \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \

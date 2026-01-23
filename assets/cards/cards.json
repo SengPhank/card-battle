@@ -1,0 +1,22 @@
+{
+  "cards": [
+    {
+      "id": 0,
+      "name": "Archer",
+      "health": 10,
+      "attack": 6,
+      "abilities": ["peircing"],
+      "image": "images/cards/fire_dragon.png",
+      "description": "A dragon that scorches everything."
+    },
+    {
+      "id": 1,
+      "name": "Goblin",
+      "health": 5,
+      "attack": 3,
+      "abilities": ["steal"],
+      "image": "images/cards/knight.png",
+      "description": "A sturdy frontline fighter."
+    }
+  ]
+}

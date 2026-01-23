@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/a/vscode/card_battle
+CMAKE_SOURCE_DIR = /home/acid/Downloads/card-battle
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/a/vscode/card_battle/build
+CMAKE_BINARY_DIR = /home/acid/Downloads/card-battle/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/a/vscode/card_battle/build/CMakeFiles /home/a/vscode/card_battle/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/acid/Downloads/card-battle/build/CMakeFiles /home/acid/Downloads/card-battle/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/a/vscode/card_battle/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/acid/Downloads/card-battle/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -130,41 +130,161 @@ card_battle_lib/fast:
 .PHONY : card_battle_lib/fast
 
 #=============================================================================
-# Target rules for targets named card_battle_tests
+# Target rules for targets named card_battle
 
 # Build rule for target.
-card_battle_tests: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 card_battle_tests
-.PHONY : card_battle_tests
+card_battle: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 card_battle
+.PHONY : card_battle
 
 # fast build rule for target.
-card_battle_tests/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_tests.dir/build.make CMakeFiles/card_battle_tests.dir/build
-.PHONY : card_battle_tests/fast
+card_battle/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle.dir/build.make CMakeFiles/card_battle.dir/build
+.PHONY : card_battle/fast
 
-src/GameManager.o: src/GameManager.cpp.o
-.PHONY : src/GameManager.o
+src/boot/CardHandler.o: src/boot/CardHandler.cpp.o
+.PHONY : src/boot/CardHandler.o
 
 # target to build an object file
-src/GameManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.o
-.PHONY : src/GameManager.cpp.o
+src/boot/CardHandler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.o
+.PHONY : src/boot/CardHandler.cpp.o
 
-src/GameManager.i: src/GameManager.cpp.i
-.PHONY : src/GameManager.i
+src/boot/CardHandler.i: src/boot/CardHandler.cpp.i
+.PHONY : src/boot/CardHandler.i
 
 # target to preprocess a source file
-src/GameManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.i
-.PHONY : src/GameManager.cpp.i
+src/boot/CardHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.i
+.PHONY : src/boot/CardHandler.cpp.i
 
-src/GameManager.s: src/GameManager.cpp.s
-.PHONY : src/GameManager.s
+src/boot/CardHandler.s: src/boot/CardHandler.cpp.s
+.PHONY : src/boot/CardHandler.s
 
 # target to generate assembly for a file
-src/GameManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/GameManager.cpp.s
-.PHONY : src/GameManager.cpp.s
+src/boot/CardHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/CardHandler.cpp.s
+.PHONY : src/boot/CardHandler.cpp.s
+
+src/boot/ui/GamePanel.o: src/boot/ui/GamePanel.cpp.o
+.PHONY : src/boot/ui/GamePanel.o
+
+# target to build an object file
+src/boot/ui/GamePanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.o
+.PHONY : src/boot/ui/GamePanel.cpp.o
+
+src/boot/ui/GamePanel.i: src/boot/ui/GamePanel.cpp.i
+.PHONY : src/boot/ui/GamePanel.i
+
+# target to preprocess a source file
+src/boot/ui/GamePanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.i
+.PHONY : src/boot/ui/GamePanel.cpp.i
+
+src/boot/ui/GamePanel.s: src/boot/ui/GamePanel.cpp.s
+.PHONY : src/boot/ui/GamePanel.s
+
+# target to generate assembly for a file
+src/boot/ui/GamePanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/GamePanel.cpp.s
+.PHONY : src/boot/ui/GamePanel.cpp.s
+
+src/boot/ui/MainMenuPanel.o: src/boot/ui/MainMenuPanel.cpp.o
+.PHONY : src/boot/ui/MainMenuPanel.o
+
+# target to build an object file
+src/boot/ui/MainMenuPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.o
+.PHONY : src/boot/ui/MainMenuPanel.cpp.o
+
+src/boot/ui/MainMenuPanel.i: src/boot/ui/MainMenuPanel.cpp.i
+.PHONY : src/boot/ui/MainMenuPanel.i
+
+# target to preprocess a source file
+src/boot/ui/MainMenuPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.i
+.PHONY : src/boot/ui/MainMenuPanel.cpp.i
+
+src/boot/ui/MainMenuPanel.s: src/boot/ui/MainMenuPanel.cpp.s
+.PHONY : src/boot/ui/MainMenuPanel.s
+
+# target to generate assembly for a file
+src/boot/ui/MainMenuPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/MainMenuPanel.cpp.s
+.PHONY : src/boot/ui/MainMenuPanel.cpp.s
+
+src/boot/ui/MainWindow.o: src/boot/ui/MainWindow.cpp.o
+.PHONY : src/boot/ui/MainWindow.o
+
+# target to build an object file
+src/boot/ui/MainWindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.o
+.PHONY : src/boot/ui/MainWindow.cpp.o
+
+src/boot/ui/MainWindow.i: src/boot/ui/MainWindow.cpp.i
+.PHONY : src/boot/ui/MainWindow.i
+
+# target to preprocess a source file
+src/boot/ui/MainWindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.i
+.PHONY : src/boot/ui/MainWindow.cpp.i
+
+src/boot/ui/MainWindow.s: src/boot/ui/MainWindow.cpp.s
+.PHONY : src/boot/ui/MainWindow.s
+
+# target to generate assembly for a file
+src/boot/ui/MainWindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/MainWindow.cpp.s
+.PHONY : src/boot/ui/MainWindow.cpp.s
+
+src/boot/ui/SettingsPanel.o: src/boot/ui/SettingsPanel.cpp.o
+.PHONY : src/boot/ui/SettingsPanel.o
+
+# target to build an object file
+src/boot/ui/SettingsPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.o
+.PHONY : src/boot/ui/SettingsPanel.cpp.o
+
+src/boot/ui/SettingsPanel.i: src/boot/ui/SettingsPanel.cpp.i
+.PHONY : src/boot/ui/SettingsPanel.i
+
+# target to preprocess a source file
+src/boot/ui/SettingsPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.i
+.PHONY : src/boot/ui/SettingsPanel.cpp.i
+
+src/boot/ui/SettingsPanel.s: src/boot/ui/SettingsPanel.cpp.s
+.PHONY : src/boot/ui/SettingsPanel.s
+
+# target to generate assembly for a file
+src/boot/ui/SettingsPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/SettingsPanel.cpp.s
+.PHONY : src/boot/ui/SettingsPanel.cpp.s
+
+src/boot/ui/UIManager.o: src/boot/ui/UIManager.cpp.o
+.PHONY : src/boot/ui/UIManager.o
+
+# target to build an object file
+src/boot/ui/UIManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.o
+.PHONY : src/boot/ui/UIManager.cpp.o
+
+src/boot/ui/UIManager.i: src/boot/ui/UIManager.cpp.i
+.PHONY : src/boot/ui/UIManager.i
+
+# target to preprocess a source file
+src/boot/ui/UIManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.i
+.PHONY : src/boot/ui/UIManager.cpp.i
+
+src/boot/ui/UIManager.s: src/boot/ui/UIManager.cpp.s
+.PHONY : src/boot/ui/UIManager.s
+
+# target to generate assembly for a file
+src/boot/ui/UIManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/boot/ui/UIManager.cpp.s
+.PHONY : src/boot/ui/UIManager.cpp.s
 
 src/cards/Card.o: src/cards/Card.cpp.o
 .PHONY : src/cards/Card.o
@@ -262,60 +382,84 @@ src/characters/Tank.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/characters/Tank.cpp.s
 .PHONY : src/characters/Tank.cpp.s
 
-src/map/Lane.o: src/map/Lane.cpp.o
-.PHONY : src/map/Lane.o
+src/game/Lane.o: src/game/Lane.cpp.o
+.PHONY : src/game/Lane.o
 
 # target to build an object file
-src/map/Lane.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.o
-.PHONY : src/map/Lane.cpp.o
+src/game/Lane.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.o
+.PHONY : src/game/Lane.cpp.o
 
-src/map/Lane.i: src/map/Lane.cpp.i
-.PHONY : src/map/Lane.i
+src/game/Lane.i: src/game/Lane.cpp.i
+.PHONY : src/game/Lane.i
 
 # target to preprocess a source file
-src/map/Lane.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.i
-.PHONY : src/map/Lane.cpp.i
+src/game/Lane.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.i
+.PHONY : src/game/Lane.cpp.i
 
-src/map/Lane.s: src/map/Lane.cpp.s
-.PHONY : src/map/Lane.s
+src/game/Lane.s: src/game/Lane.cpp.s
+.PHONY : src/game/Lane.s
 
 # target to generate assembly for a file
-src/map/Lane.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/map/Lane.cpp.s
-.PHONY : src/map/Lane.cpp.s
+src/game/Lane.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/Lane.cpp.s
+.PHONY : src/game/Lane.cpp.s
 
-src/map/MainBoard.o: src/map/MainBoard.cpp.o
-.PHONY : src/map/MainBoard.o
+src/game/MainBoard.o: src/game/MainBoard.cpp.o
+.PHONY : src/game/MainBoard.o
 
 # target to build an object file
-src/map/MainBoard.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.o
-.PHONY : src/map/MainBoard.cpp.o
+src/game/MainBoard.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.o
+.PHONY : src/game/MainBoard.cpp.o
 
-src/map/MainBoard.i: src/map/MainBoard.cpp.i
-.PHONY : src/map/MainBoard.i
+src/game/MainBoard.i: src/game/MainBoard.cpp.i
+.PHONY : src/game/MainBoard.i
 
 # target to preprocess a source file
-src/map/MainBoard.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.i
-.PHONY : src/map/MainBoard.cpp.i
+src/game/MainBoard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.i
+.PHONY : src/game/MainBoard.cpp.i
 
-src/map/MainBoard.s: src/map/MainBoard.cpp.s
-.PHONY : src/map/MainBoard.s
+src/game/MainBoard.s: src/game/MainBoard.cpp.s
+.PHONY : src/game/MainBoard.s
 
 # target to generate assembly for a file
-src/map/MainBoard.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/map/MainBoard.cpp.s
-.PHONY : src/map/MainBoard.cpp.s
+src/game/MainBoard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/MainBoard.cpp.s
+.PHONY : src/game/MainBoard.cpp.s
+
+src/game/MatchManager.o: src/game/MatchManager.cpp.o
+.PHONY : src/game/MatchManager.o
+
+# target to build an object file
+src/game/MatchManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.o
+.PHONY : src/game/MatchManager.cpp.o
+
+src/game/MatchManager.i: src/game/MatchManager.cpp.i
+.PHONY : src/game/MatchManager.i
+
+# target to preprocess a source file
+src/game/MatchManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.i
+.PHONY : src/game/MatchManager.cpp.i
+
+src/game/MatchManager.s: src/game/MatchManager.cpp.s
+.PHONY : src/game/MatchManager.s
+
+# target to generate assembly for a file
+src/game/MatchManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_lib.dir/build.make CMakeFiles/card_battle_lib.dir/src/game/MatchManager.cpp.s
+.PHONY : src/game/MatchManager.cpp.s
 
 tests/main.o: tests/main.cpp.o
 .PHONY : tests/main.o
 
 # target to build an object file
 tests/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_tests.dir/build.make CMakeFiles/card_battle_tests.dir/tests/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle.dir/build.make CMakeFiles/card_battle.dir/tests/main.cpp.o
 .PHONY : tests/main.cpp.o
 
 tests/main.i: tests/main.cpp.i
@@ -323,7 +467,7 @@ tests/main.i: tests/main.cpp.i
 
 # target to preprocess a source file
 tests/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_tests.dir/build.make CMakeFiles/card_battle_tests.dir/tests/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle.dir/build.make CMakeFiles/card_battle.dir/tests/main.cpp.i
 .PHONY : tests/main.cpp.i
 
 tests/main.s: tests/main.cpp.s
@@ -331,7 +475,7 @@ tests/main.s: tests/main.cpp.s
 
 # target to generate assembly for a file
 tests/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle_tests.dir/build.make CMakeFiles/card_battle_tests.dir/tests/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/card_battle.dir/build.make CMakeFiles/card_battle.dir/tests/main.cpp.s
 .PHONY : tests/main.cpp.s
 
 # Help Target
@@ -342,11 +486,26 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... card_battle"
 	@echo "... card_battle_lib"
-	@echo "... card_battle_tests"
-	@echo "... src/GameManager.o"
-	@echo "... src/GameManager.i"
-	@echo "... src/GameManager.s"
+	@echo "... src/boot/CardHandler.o"
+	@echo "... src/boot/CardHandler.i"
+	@echo "... src/boot/CardHandler.s"
+	@echo "... src/boot/ui/GamePanel.o"
+	@echo "... src/boot/ui/GamePanel.i"
+	@echo "... src/boot/ui/GamePanel.s"
+	@echo "... src/boot/ui/MainMenuPanel.o"
+	@echo "... src/boot/ui/MainMenuPanel.i"
+	@echo "... src/boot/ui/MainMenuPanel.s"
+	@echo "... src/boot/ui/MainWindow.o"
+	@echo "... src/boot/ui/MainWindow.i"
+	@echo "... src/boot/ui/MainWindow.s"
+	@echo "... src/boot/ui/SettingsPanel.o"
+	@echo "... src/boot/ui/SettingsPanel.i"
+	@echo "... src/boot/ui/SettingsPanel.s"
+	@echo "... src/boot/ui/UIManager.o"
+	@echo "... src/boot/ui/UIManager.i"
+	@echo "... src/boot/ui/UIManager.s"
 	@echo "... src/cards/Card.o"
 	@echo "... src/cards/Card.i"
 	@echo "... src/cards/Card.s"
@@ -359,12 +518,15 @@ help:
 	@echo "... src/characters/Tank.o"
 	@echo "... src/characters/Tank.i"
 	@echo "... src/characters/Tank.s"
-	@echo "... src/map/Lane.o"
-	@echo "... src/map/Lane.i"
-	@echo "... src/map/Lane.s"
-	@echo "... src/map/MainBoard.o"
-	@echo "... src/map/MainBoard.i"
-	@echo "... src/map/MainBoard.s"
+	@echo "... src/game/Lane.o"
+	@echo "... src/game/Lane.i"
+	@echo "... src/game/Lane.s"
+	@echo "... src/game/MainBoard.o"
+	@echo "... src/game/MainBoard.i"
+	@echo "... src/game/MainBoard.s"
+	@echo "... src/game/MatchManager.o"
+	@echo "... src/game/MatchManager.i"
+	@echo "... src/game/MatchManager.s"
 	@echo "... tests/main.o"
 	@echo "... tests/main.i"
 	@echo "... tests/main.s"

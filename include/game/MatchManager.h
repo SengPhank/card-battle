@@ -2,12 +2,12 @@
 Manage matches by keeping track of player entities, cards, etc
 */
 #pragma once
-#include "map/MainBoard.h"
+#include "game/MainBoard.h"
 #include "characters/Character.h"
 
 #include <vector>
 
-class GameManager {
+class MatchManager {
 private:
     int turn;
     Character* plr1;
@@ -15,7 +15,7 @@ private:
     MainBoard* board;
     
 public:
-    GameManager(Character* p1, Character* p2);
+    MatchManager(Character* p1, Character* p2);
     MainBoard* initGame(int numLanes);
 
     void damagePlr1(int atk);
@@ -24,6 +24,6 @@ public:
     // Encapsulation
     int getTurn() const;
 
-    ~GameManager();
+    ~MatchManager();
 };
 

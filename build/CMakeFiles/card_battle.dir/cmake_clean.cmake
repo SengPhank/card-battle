@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/card_battle.dir/src/GameManager.cpp.o"
-  "CMakeFiles/card_battle.dir/src/GameManager.cpp.o.d"
-  "libcard_battle.a"
-  "libcard_battle.pdb"
+  "CMakeFiles/card_battle.dir/tests/main.cpp.o"
+  "CMakeFiles/card_battle.dir/tests/main.cpp.o.d"
+  "card_battle"
+  "card_battle.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

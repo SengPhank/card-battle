@@ -1,23 +1,33 @@
-#include "GameManager.h"
-#include "map/MainBoard.h"
+#include "game/MatchManager.h"
 #include "characters/Mage.h"
 #include "characters/Tank.h"
-#include "cards/Card.h"
+#include "boot/CardHandler.h"
 
-int main(void) {
-    Mage* plr1 = new Mage(50, 100);
-    Tank* plr2 = new Tank(100, 0);
-    
-    GameManager* GM = new GameManager(plr1, plr2);
-    MainBoard* board = GM->initGame(3);
+#include "boot/ui/MainWindow.h"
+#include "boot/ui/UIManager.h"
+#include <iostream>
 
-    Card* goblin = new Card("Goblin", 10, 15);
-    Card* archer = new Card("Archer", 5, 20);
-    board->playCard(1,2,goblin);
-    board->playCard(2,0,archer);
-    board->enactBoard();
-    
+class mainApp : public wxApp
+{
+public:
+    virtual bool OnInit();
+};
+DECLARE_APP(mainApp)
 
-    delete GM;
-    return 0;
+// Treat as main
+bool mainApp::OnInit() {
+    // Initialize Data
+    CardHandler CH;
+    std::map<int, Card> allCards = CH.getCards();
+    for (auto [id, Card] : allCards) {
+        std::cout << id << " : " << Card.getName() << std::endl;
+    }
+    std::cout << "CARD DATA LOADED" << std::endl;
+    // Initialize UI
+    MainWindow* gameFrame = new MainWindow();
+    std::cout << "UI LOADED" << std::endl;
+    // Show frame
+    gameFrame->Show(true);
+    std::cout << "COMPLETED LOADING" << std::endl;
+    return true;
 }

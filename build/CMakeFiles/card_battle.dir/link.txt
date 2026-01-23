@@ -1,2 +1,1 @@
-/usr/bin/ar qc libcard_battle.a CMakeFiles/card_battle.dir/src/GameManager.cpp.o
-/usr/bin/ranlib libcard_battle.a
+/usr/bin/c++ CMakeFiles/card_battle.dir/tests/main.cpp.o -o card_battle   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib libcard_battle_lib.a 

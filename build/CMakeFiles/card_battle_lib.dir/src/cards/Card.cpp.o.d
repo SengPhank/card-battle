@@ -1,6 +1,7 @@
 CMakeFiles/card_battle_lib.dir/src/cards/Card.cpp.o: \
- /home/a/vscode/card_battle/src/cards/Card.cpp /usr/include/stdc-predef.h \
- /home/a/vscode/card_battle/include/cards/Card.h \
+ /home/acid/Downloads/card-battle/src/cards/Card.cpp \
+ /usr/include/stdc-predef.h \
+ /home/acid/Downloads/card-battle/include/cards/Card.h \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
