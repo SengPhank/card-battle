@@ -1,4 +1,0 @@
-/home/acid/Downloads/card-battle/build/CMakeFiles/card_battle_lib.dir
-/home/acid/Downloads/card-battle/build/CMakeFiles/card_battle.dir
-/home/acid/Downloads/card-battle/build/CMakeFiles/edit_cache.dir
-/home/acid/Downloads/card-battle/build/CMakeFiles/rebuild_cache.dir
