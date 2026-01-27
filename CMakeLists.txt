@@ -13,10 +13,10 @@ add_library(card_battle_lib
     # Boot
     src/boot/CardHandler.cpp
     src/boot/ui/GamePanel.cpp
+    src/boot/ui/GamePanelHelper.cpp
     src/boot/ui/MainMenuPanel.cpp
     src/boot/ui/MainWindow.cpp
     src/boot/ui/SettingsPanel.cpp
-    src/boot/ui/UIManager.cpp
     # Game Data
     src/game/MatchManager.cpp
     src/game/Lane.cpp

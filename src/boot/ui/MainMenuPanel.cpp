@@ -1,12 +1,13 @@
 #include "boot/ui/MainMenuPanel.h"
+#include "constants.h"
 #include <wx/sizer.h>
 
 MainMenuPanel::MainMenuPanel(wxWindow* parent)
-    : wxPanel(parent, wxID_ANY)
+    : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(CONSTANTS::SCREENX, CONSTANTS::SCREENY))
 {
     // Create buttons
-    playButton = new wxButton(this, wxID_ANY, "Play", wxDefaultPosition, wxSize(120, 40));
-    settingsButton = new wxButton(this, wxID_ANY, "Settings", wxDefaultPosition, wxSize(120, 40));
+    playButton = new wxButton(this, wxID_ANY, "Play", wxDefaultPosition, wxSize(240, 80));
+    settingsButton = new wxButton(this, wxID_ANY, "Settings", wxDefaultPosition, wxSize(240, 80));
 
     // Use a vertical box sizer to stack buttons
     wxBoxSizer* vSizer = new wxBoxSizer(wxVERTICAL);

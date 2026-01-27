@@ -3,6 +3,7 @@ Manage matches by keeping track of player entities, cards, etc
 */
 #pragma once
 #include "boot/CardHandler.h"
+#include "boot/ui/GamePanel.h"
 #include "game/MainBoard.h"
 #include "characters/Character.h"
 #include "cards/Card.h"
@@ -24,9 +25,10 @@ private:
 
     // Managers
     CardHandler* CH;
+    GamePanel* gamePanel;
     
 public:
-    MatchManager(CardHandler* CH, Character* p1, Character* p2, int numLanes);
+    MatchManager(GamePanel* gamePanel, CardHandler* CH, Character* p1, Character* p2, int numLanes);
 
     // Player interaction
     bool requestPlay(int plr, int lane, Card* card);

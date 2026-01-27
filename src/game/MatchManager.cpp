@@ -1,6 +1,7 @@
 #include "game/MatchManager.h"
 #include "game/MainBoard.h"
 #include "boot/CardHandler.h"
+#include "constants.h"
 #include <iostream>
 
 // int turn; // what turn it currently is
@@ -11,12 +12,17 @@
 // std::vector<Card*> plr2Deck; 
 // MainBoard* board;
     
-MatchManager::MatchManager(CardHandler* CH, Character* p1, Character* p2, int numLanes) : CH(CH), plr1(p1), plr2(p2) {
+MatchManager::MatchManager(GamePanel* gamePanel, CardHandler* CH, Character* p1, Character* p2, int numLanes) : CH(CH), plr1(p1), plr2(p2) {
     this->turn = 1;
     this->awaiting = 1;  // default plr1 starts 
     this->plr1Token = 1; // default token start
     this->plr2Token = 1;
+    this->gamePanel = gamePanel;
     board = new MainBoard(this, numLanes);
+    // Link the end-turn button to this game
+    gamePanel->getEndTurnButton()->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
+        this->endTurn();
+    });
     std::cout << "Initalized a game!\nPlayer1: " << plr1->getName() << " vs\nPlayer2: " << plr2->getName() << std::endl;
 }
 
@@ -64,14 +70,21 @@ void MatchManager::damagePlr2(int atk) {
 }
 bool MatchManager::drawCard(int plr) {
     // CARD CAP
-    int maxCap = 5;
     std::vector<Card*>& plrDeck = (plr == 1) ? plr1Deck : plr2Deck;
-    if (plrDeck.size() >= maxCap) return false; 
+    if (plrDeck.size() >= CONSTANTS::MAX_DECK_SIZE) return false; 
     Card randoCard = CH->getRandomCard();
-    return randoCard.clone();
+    plrDeck.push_back(randoCard.clone());
+    // update plrs card
+    if (plr == 1) {
+        gamePanel->UpdateDeck(plr1Deck);
+    } else if (plr == 2) {
+        gamePanel->UpdateEnemyStats(this->plr2->getHealth(), this->plr2Token, this->plr2Deck.size());
+    }
+    return true;
 }
 
 void MatchManager::endTurn() {
+    std::cout << "turn ended" << std::endl;
     if (awaiting == 1) {
         awaiting = 2;
         return;

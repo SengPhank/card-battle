@@ -1,20 +1,15 @@
 #pragma once
-#include "boot/ui/MainWindow.h"
-#include "boot/ui/SettingsPanel.h"
 #include "boot/ui/GamePanel.h"
-#include "boot/ui/SettingsPanel.h"
+#include "game/MatchManager.h"
 
-#include <wx/wx.h>
-#include <vector>
+// This module allows connection between game manager and game panel.
+// Once turn is ended, card is drawn, entity damaged, update the UI.
 
-class UIManager {
+class UIManager
+{
 private:
-    wxFrame* mainWindow;
-    std::vector<wxPanel*> panels;
-    
+    /* data */
 public:
-    UIManager(wxFrame* mainWindow, const std::vector<wxPanel*> panels);
-    // TODO: Back page (using stack)
-    void showPanel(wxPanel* panel);     // Show one but all panel
+    UIManager(/* args */);
     ~UIManager();
 };

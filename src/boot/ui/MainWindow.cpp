@@ -1,37 +1,34 @@
 #include "boot/ui/MainWindow.h"
+#include "constants.h"
 #include <vector>
 #include <iostream>
-MainWindow::MainWindow()
-    : wxFrame(nullptr, wxID_ANY, "Card Battle", wxDefaultPosition, wxSize(1800, 1600)) {
+MainWindow::MainWindow() 
+: wxFrame(nullptr, wxID_ANY, "Card Battle", wxDefaultPosition, wxSize(CONSTANTS::SCREENX, CONSTANTS::SCREENY), wxDEFAULT_FRAME_STYLE & ~(wxRESIZE_BORDER | wxMAXIMIZE_BOX)) {
 
-    // Create panels
-    mainMenuPanel = new MainMenuPanel(this);
-    gamePanel = new GamePanel(this);
-    std::vector<wxPanel*> v = {mainMenuPanel, gamePanel};
+    book = new wxSimplebook(this, wxID_ANY);
 
-    // Set up UI Manager
-    uiManager = new UIManager(this, v);
+    // Create panels inside the book
+    mainMenuPanel = new MainMenuPanel(book);
+    gamePanel = new GamePanel(book);
 
-    // Initially show main menu
-    uiManager->showPanel(mainMenuPanel);
+    book->AddPage(mainMenuPanel, "Menu");
+    book->AddPage(gamePanel, "Game");
 
-    // Set sizer for the main window
-    wxBoxSizer* mainWindowSizer = new wxBoxSizer(wxVERTICAL);
-    mainWindowSizer->Add(mainMenuPanel, 1, wxEXPAND | wxALL, 5);
-    mainWindowSizer->Add(gamePanel, 1, wxEXPAND | wxALL, 5);
-
-    // Set the main sizer for the frame (will manage the panels)
-    this->SetSizerAndFit(mainWindowSizer);
+    // Initially show menu
+    book->ChangeSelection(0);
+    book->Layout();
 
     // Bind Play button
     mainMenuPanel->playButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
-        // Switch to the game panel when Play button is clicked
-        uiManager->showPanel(gamePanel);
-        std::cout << "Play Clicked!\n";
-    });
-
-    // Bind Settings button
-    mainMenuPanel->settingsButton->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
-        std::cout << "Settings Clicked!\n";
-    });
+        std::cout << "pressed play!" << std::endl;
+        book->ChangeSelection(1);});
 }
+
+GamePanel* MainWindow::getGamePanel() const {
+    return this->gamePanel;
+}
+MainMenuPanel* MainWindow::getMainMenuPanel() const {
+    return this->mainMenuPanel;
+}
+
+MainWindow::~MainWindow() {}

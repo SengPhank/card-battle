@@ -4,6 +4,7 @@
 #include "boot/CardHandler.h"
 
 #include "boot/ui/MainWindow.h"
+#include "constants.h"
 #include <iostream>
 
 class mainApp : public wxApp {
@@ -14,14 +15,21 @@ public:
 // Treat as main
 bool mainApp::OnInit() {
     // Initialize Data
-    // CardHandler CH;
-    // std::map<int, Card> allCards = CH.getCards();
-    // for (auto [id, Card] : allCards) {
-    //     std::cout << id << " : " << Card.getName() << std::endl;
-    // }
-    // std::cout << "CARD DATA LOADED" << std::endl;
+    CardHandler* CH = new CardHandler;
+    std::vector<Card> allCards = CH->getCards();
+    for (Card& i : allCards) {
+        std::cout << i.getName() << std::endl;
+    }
+    std::cout << "CARD DATA LOADED" << std::endl;
+
     // Initialize UI
     MainWindow* gameFrame = new MainWindow();
+
+    // Initialize a Match manager
+    Mage* mage = new Mage(50, 10);
+    Tank* tank = new Tank(100, 30);
+    MatchManager* MM = new MatchManager(gameFrame->getGamePanel(), CH, mage, tank, 4);
+
     // Show frame
     gameFrame->Show(true);
     std::cout << "COMPLETED LOADING" << std::endl;
