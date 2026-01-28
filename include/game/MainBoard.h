@@ -14,6 +14,9 @@ public:
     MainBoard(MatchManager* gm, int numLanes); 
     bool playCard(int player, int lane, Card* card);
     void enactBoard();
+
+    // Encap
+    std::vector<Lane*> getLanes() const;
     ~MainBoard();
 };
 

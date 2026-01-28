@@ -1,5 +1,5 @@
-#include "boot/ui/GamePanelHelper.h"
-#include "boot/ui/GamePanel.h"
+#include "ui/GamePanelHelper.h"
+#include "ui/GamePanel.h"
 #include "constants.h"
 /*// Enemy UI components
 wxStaticText* enemyCards;
@@ -25,17 +25,26 @@ GamePanel::GamePanel(wxWindow* parent)
     // Init variables
     curPage = 0;
     plrDeck = {};
+    selectedCard = nullptr;
+    wxButton* selectedDeckButton = nullptr;
+    wxColour defaultDeckColour = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
+    
+    // Init ui
     GamePanelHelper GPH;
     wxPanel* mainPanel = new wxPanel(this);
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
     // Receive data
-    wxPanel* headerPanel = GPH.createHeader(mainPanel);
+    DataHeaderUI headerInfo = GPH.createHeader(mainPanel);
     DataTopUI topInf = GPH.createTop(mainPanel);
-    DataBoardUI board1Inf = GPH.createBoard(mainPanel, 4);
-    DataBoardUI board2Inf = GPH.createBoard(mainPanel, 4);
+    DataBoardUI board1Inf = GPH.createBoard(mainPanel, CONSTANTS::NUM_LANES);
+    DataBoardUI board2Inf = GPH.createBoard(mainPanel, CONSTANTS::NUM_LANES);
     DataBottomUI bottomInf = GPH.createBottom(mainPanel);
-   
+    
+    // Unpack Header
+    settingsBtn = headerInfo.settingsButton;
+    headerMessage = headerInfo.topText;
+
     // Unpack topInfo
     enemyCards = topInf.cardsRemaining;
     enemyRage = topInf.rageText;
@@ -44,6 +53,8 @@ GamePanel::GamePanel(wxWindow* parent)
 
     // Unpack boardInfo (into a sizer)
     wxBoxSizer* boardsSizer = new wxBoxSizer(wxVERTICAL);
+    enemyBoard = board1Inf.buttons;
+    yourBoard = board2Inf.buttons;
     boardsSizer->Add(board1Inf.panel, 1, wxEXPAND | wxALL, 8);
     boardsSizer->Add(board2Inf.panel, 1, wxEXPAND | wxALL, 8);
     
@@ -58,6 +69,9 @@ GamePanel::GamePanel(wxWindow* parent)
     deckLeft = bottomInf.leftDeck;
     deckRight = bottomInf.rightDeck;
     // =========== Bind key buttons ============
+    settingsBtn->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
+        std::cout << "Settings clicked" << std::endl;
+    });
     deckLeft->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
         RotateDeck(curPage-1);
     });
@@ -65,10 +79,8 @@ GamePanel::GamePanel(wxWindow* parent)
         RotateDeck(curPage+1);
     });
 
-    // ========== Initialize a game ===========
-
     // ========== Assemble all UI ==========
-    mainSizer->Add(headerPanel, 5, wxEXPAND | wxALL, 5);
+    mainSizer->Add(headerInfo.panel, 5, wxEXPAND | wxALL, 5);
     mainSizer->Add(topInf.panel, 10, wxEXPAND | wxALL, 5);
     mainSizer->Add(boardsSizer, 55, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, 5);
     mainSizer->Add(bottomInf.panel, 30, wxEXPAND | wxALL, 5);
@@ -83,6 +95,8 @@ GamePanel::GamePanel(wxWindow* parent)
 void GamePanel::UpdateDeck(std::vector<Card*> plrDeck) {
     // Update player's cards
     this->plrDeck = plrDeck;
+    selectedCard = nullptr;
+    yourCards->SetLabel("Cards: " + std::to_string(plrDeck.size()));
     // Update the player's cards UI
     RotateDeck(curPage);
 }
@@ -101,9 +115,9 @@ void GamePanel::RotateDeck(int page) {
     } else if (page < 0) {
         page = 0;
     }
-    std::cout << "clearing children. std: " << plrDeck.size() << std::endl;
     // Clear previous buttons
     yourDeck->Clear(true);  // destroys old buttons
+    selectedDeckButton = nullptr;
 
     // Add new cards
     int from = page * CONSTANTS::DECK_VIEW;
@@ -114,35 +128,94 @@ void GamePanel::RotateDeck(int page) {
             yourDeckPanel,
             wxID_ANY,
             // wxString::Format("C%d", from + i + 1),
-            wxString::Format("Name: %s", plrDeck[from]->getName()),
+            plrDeck[from]->statToString(),
             wxDefaultPosition,
             wxSize(-1, 70)
         );
+        Card* curCard = plrDeck[from];
+        btn->Bind(wxEVT_BUTTON, [this, btn, curCard](wxCommandEvent&) {
+            if (selectedCard == curCard) { // deselected on reclick
+                selectedDeckButton->SetBackgroundColour(defaultDeckColour);
+                selectedDeckButton = nullptr;
+                selectedCard = nullptr;
+                return;
+            }
+            // Reset previously selected button
+            if (selectedDeckButton) {
+                selectedDeckButton->SetBackgroundColour(defaultDeckColour);
+                selectedDeckButton->Refresh();
+            }
+
+            // Set new selection
+            selectedDeckButton = btn;
+            selectedCard = curCard;
+
+            btn->SetBackgroundColour(*wxBLUE);
+            btn->Refresh();
+
+            std::cout << "Selected card: " << selectedCard->getName() << std::endl;
+        });
         yourDeck->Add(btn, 1, wxEXPAND);
     }
     // Refresh layout
     yourDeckPanel->Layout();
     curPage = page;
+    selectedCard = nullptr;
     std::cout << "on page " << curPage << " out of " << groups << std::endl;
 
 }
 
-void GamePanel::UpdatePlayerStats(int newHP, int newPlayerTokens) {
+void GamePanel::UpdatePlayerStats(int newHP, int newPlayerTokens, int newRage) {
     // Update the player's health and tokens
+    yourHealth->SetLabel("Health: " + std::to_string(newHP));
+    yourTokens->SetLabel("Tokens: " + std::to_string(newPlayerTokens));
+    yourRage->SetLabel("Rage: " + std::to_string(newRage));
 }
 
-void GamePanel::UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize) {
+void GamePanel::UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize, int enemyRage) {
     // Update the enemy's health, tokens, and deck size
+    enemyHealth->SetLabel("Health: " + std::to_string(newHP));
+    enemyTokens->SetLabel("Tokens: " + std::to_string(newEnemyTokens));
+    enemyCards->SetLabel("Cards: " + std::to_string(enemyDeckSize));
+    this->enemyRage->SetLabel("Rage: " + std::to_string(enemyRage));
 }
 
-void GamePanel::UpdateBoard(const MainBoard*& board) {
+void GamePanel::UpdateBoard(MainBoard* board) {
     // Update the game board based on the MainBoard state
+    std::vector<Lane*> allLanes = board->getLanes();
+    for (int i = 0; i < allLanes.size(); i++) {
+        Lane* curLane = allLanes[i];
+        Card* enemy = curLane->getPlr2Entity();
+        Card* yours = curLane->getPlr1Entity();
+        if (enemy) {
+            enemyBoard[i]->SetLabel(enemy->statToString());
+        } else {
+            enemyBoard[i]->SetLabel("");
+        }
+        if (yours) {
+            yourBoard[i]->SetLabel(yours->statToString());
+        } else {
+            yourBoard[i]->SetLabel("");
+        }
+    }
+    std::cout << "board updated " << std::endl;
 }
 
+void GamePanel::UpdateHeaderText(std::string s) {
+    headerMessage->SetLabel(s);
+}
 // Encap
 wxButton* GamePanel::getEndTurnButton() {
     return this->endTurnBtn;
 }
 
-GamePanel::~GamePanel() {
+std::vector<wxButton*> GamePanel::getBoardButtons1() const {
+    return this->enemyBoard;
 }
+std::vector<wxButton*> GamePanel::getBoardButtons2() const {
+    return this->yourBoard;
+}
+Card* GamePanel::getSelectedCard() const {
+    return this->selectedCard;
+}
+GamePanel::~GamePanel() {}

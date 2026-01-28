@@ -17,6 +17,15 @@ Card* Card::clone() {
     Card* newCard = new Card(name, health, attack, cost, abilities);
     return newCard;
 }
+std::string Card::statToString() {
+    std::string s = std::format("{}\nHp: {}, Atk: {}\nCost: {}",
+        this->name,
+        this->health,
+        this->attack,
+        this->cost
+    );
+    return s;
+}
 
 // Encapsulation
 int Card::getDamage() const {

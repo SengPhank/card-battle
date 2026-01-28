@@ -1,4 +1,4 @@
-#include "boot/ui/MainMenuPanel.h"
+#include "ui/MainMenuPanel.h"
 #include "constants.h"
 #include <wx/sizer.h>
 

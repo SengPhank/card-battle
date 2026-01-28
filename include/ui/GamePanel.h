@@ -35,7 +35,7 @@ struct DataBottomUI {
 #pragma once
 
 #include "game/MainBoard.h"
-#include "boot/ui/GamePanelHelper.h"
+#include "ui/GamePanelHelper.h"
 #include <wx/wx.h>
 #include <wx/grid.h>
 #include <vector>
@@ -67,22 +67,33 @@ private:
     wxButton* deckLeft;
     wxButton* deckRight;
 
+    // Other UI
+    wxButton* settingsBtn;
+    wxStaticText* headerMessage;
+    wxButton* selectedDeckButton;
+    wxColour defaultDeckColour;
+
     // Storage
     std::vector<Card*> plrDeck; // the last stored player deck
     int curPage;
+    Card* selectedCard;
 
 public:
     GamePanel(wxWindow* parent);
     ~GamePanel();
 
     // UI Updates
+    void UpdateHeaderText(std::string s);
     void UpdateDeck(std::vector<Card*> plrDeck);
     void RotateDeck(int page);
-    void UpdatePlayerStats(int newHP, int newPlayerTokens);
-    void UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize);
-    void UpdateBoard(const MainBoard*& board);
+    void UpdatePlayerStats(int newHP, int newPlayerTokens, int newRage);
+    void UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize, int enemyRage);
+    void UpdateBoard(MainBoard* board);
 
     // Encap
     wxButton* getEndTurnButton();
+    std::vector<wxButton*> getBoardButtons1() const;
+    std::vector<wxButton*> getBoardButtons2() const;
+    Card* getSelectedCard() const;
 
 };

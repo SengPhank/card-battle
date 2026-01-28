@@ -15,6 +15,9 @@ public:
     bool placeCard(int player, Card* card);      // Returns true or false if successful
     void enactLane();                                // Play this lane
 
+    // Encapsulation
     int getLane() const;
+    Card* getPlr1Entity() const;
+    Card* getPlr2Entity() const;
     ~Lane();
 };

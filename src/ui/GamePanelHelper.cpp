@@ -1,4 +1,4 @@
-#include "boot/ui/GamePanelHelper.h"
+#include "ui/GamePanelHelper.h"
 
 // public:
 //     GamePanelHelper();
@@ -9,21 +9,22 @@
 //     ~GamePanelHelper();
 
 GamePanelHelper::GamePanelHelper() {}
-wxPanel* GamePanelHelper::createHeader(wxPanel* parent) {
+DataHeaderUI GamePanelHelper::createHeader(wxPanel* parent) {
+    DataHeaderUI ui{};
     // Create the header
-    wxPanel* headerPanel = new wxPanel(parent);
+    ui.panel = new wxPanel(parent);
     wxBoxSizer* headerSizer = new wxBoxSizer(wxHORIZONTAL);
 
     // Develop features
-    wxStaticText* titleText = new wxStaticText(headerPanel, wxID_ANY, "Match");
-    wxButton* settingsButton = new wxButton(headerPanel, wxID_ANY, "Settings");
+    ui.topText = new wxStaticText(ui.panel, wxID_ANY, "Match");
+    ui.settingsButton = new wxButton(ui.panel, wxID_ANY, "Settings");
 
     // Move game name to the left, Settings to the right
-    headerSizer->Add(titleText, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 10);
-    headerSizer->Add(settingsButton, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 10);
+    headerSizer->Add(ui.topText, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 10);
+    headerSizer->Add(ui.settingsButton, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 10);
 
-    headerPanel->SetSizer(headerSizer);
-    return headerPanel;
+    ui.panel->SetSizer(headerSizer);
+    return ui;
 }
 DataTopUI GamePanelHelper::createTop(wxPanel* parent) {
     DataTopUI ui{};

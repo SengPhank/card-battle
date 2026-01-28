@@ -3,6 +3,11 @@
 #include "wx/wx.h"
 
 // Structs for cleaner data sending
+struct DataHeaderUI {
+    wxPanel* panel;
+    wxStaticText* topText;
+    wxButton* settingsButton;
+};
 struct DataTopUI {
     wxPanel* panel;
     wxStaticText* cardsRemaining;
@@ -33,7 +38,7 @@ class GamePanelHelper {
 public:
     GamePanelHelper();
     // Initialization functions
-    wxPanel* createHeader(wxPanel* parent);
+    DataHeaderUI createHeader(wxPanel* parent);
     DataTopUI createTop(wxPanel* parent);
     DataBoardUI createBoard(wxPanel* parent, int numLanes);
     DataBottomUI createBottom(wxPanel* parent);

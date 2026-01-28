@@ -28,7 +28,7 @@ bool mainApp::OnInit() {
     // Initialize a Match manager
     Mage* mage = new Mage(50, 10);
     Tank* tank = new Tank(100, 30);
-    MatchManager* MM = new MatchManager(gameFrame->getGamePanel(), CH, mage, tank, 4);
+    MatchManager* MM = new MatchManager(gameFrame->getGamePanel(), CH, mage, tank, CONSTANTS::NUM_LANES);
 
     // Show frame
     gameFrame->Show(true);

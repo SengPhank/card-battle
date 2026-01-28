@@ -12,11 +12,12 @@ include(${wxWidgets_USE_FILE})
 add_library(card_battle_lib
     # Boot
     src/boot/CardHandler.cpp
-    src/boot/ui/GamePanel.cpp
-    src/boot/ui/GamePanelHelper.cpp
-    src/boot/ui/MainMenuPanel.cpp
     src/boot/ui/MainWindow.cpp
-    src/boot/ui/SettingsPanel.cpp
+    # UI Handling
+    src/ui/GamePanel.cpp
+    src/ui/GamePanelHelper.cpp
+    src/ui/MainMenuPanel.cpp
+    src/ui/SettingsPanel.cpp
     # Game Data
     src/game/MatchManager.cpp
     src/game/Lane.cpp

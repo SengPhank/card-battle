@@ -22,6 +22,9 @@ void MainBoard::enactBoard() {
     }
 }
 
+std::vector<Lane*> MainBoard::getLanes() const {
+    return this->Lanes;
+}
 MainBoard::~MainBoard() {
     for (int i = 0; i < Lanes.size(); i++) {
         delete Lanes[i];

@@ -1,4 +1,5 @@
 #pragma once
+#include <format>
 #include <string>
 #include <vector>
 class Card {
@@ -15,8 +16,11 @@ protected:
 
 public:
     Card(std::string name, int health, int atk, int cost, std::vector<std::string> abilities);
+
+    // Functionality
     void takeDamage(int atk);
     Card* clone();
+    std::string statToString();
     
     // Encapsulation
     int getDamage() const;

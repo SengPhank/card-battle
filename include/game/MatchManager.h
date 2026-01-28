@@ -3,7 +3,7 @@ Manage matches by keeping track of player entities, cards, etc
 */
 #pragma once
 #include "boot/CardHandler.h"
-#include "boot/ui/GamePanel.h"
+#include "ui/GamePanel.h"
 #include "game/MainBoard.h"
 #include "characters/Character.h"
 #include "cards/Card.h"
@@ -15,10 +15,12 @@ private:
     int awaiting; // whose turn it is // {1, 2}
     MainBoard* board;
     
+    // Plr1 (YOU)
     Character* plr1;
     int plr1Token;
     std::vector<Card*> plr1Deck; 
 
+    // Plr2 (ENEMY)
     Character* plr2;
     int plr2Token;
     std::vector<Card*> plr2Deck; 

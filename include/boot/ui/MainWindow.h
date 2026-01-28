@@ -1,6 +1,6 @@
 #pragma once
-#include "boot/ui/MainMenuPanel.h"
-#include "boot/ui/GamePanel.h"
+#include "ui/MainMenuPanel.h"
+#include "ui/GamePanel.h"
 #include "game/MatchManager.h"
 #include <wx/wx.h>
 #include <wx/simplebook.h>

@@ -23,16 +23,34 @@ MatchManager::MatchManager(GamePanel* gamePanel, CardHandler* CH, Character* p1,
     gamePanel->getEndTurnButton()->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
         this->endTurn();
     });
+    // Link lane buttons to this game
+    std::vector<wxButton*> enemyBoard = gamePanel->getBoardButtons1();
+    std::vector<wxButton*> yourBoard = gamePanel->getBoardButtons2();
+
+    // Link to choosing specific attacks
+    for (int i = 0; i < enemyBoard.size(); i++) {
+        enemyBoard[i]->Bind(wxEVT_BUTTON, [this, i](wxCommandEvent&) {
+            std::cout << "Clicked Enemy lane " << i << std::endl;
+        });
+    }
+    // Link to playing lane
+    for (int i = 0; i < yourBoard.size(); i++) {
+        yourBoard[i]->Bind(wxEVT_BUTTON, [this, i](wxCommandEvent&) {
+            requestPlay(1, i, this->gamePanel->getSelectedCard());
+        });
+    }
+
     std::cout << "Initalized a game!\nPlayer1: " << plr1->getName() << " vs\nPlayer2: " << plr2->getName() << std::endl;
 }
 
 // Player interaction
 bool MatchManager::requestPlay(int plr, int lane, Card* card) {
+    std::cout << "attempting to play selected card at " << lane << std::endl;
     // Verify turn and cost
     if (awaiting != plr) return false;
     int& plrToken = (awaiting == 1) ? plr1Token : plr2Token;
+    if (card == nullptr) return false;
     if (card->getCost() > plrToken) return false;
-
     // Verify card was placed to pay the price;
     if (!board->playCard(plr, lane, card)) return false;
     plrToken -= card->getCost();
@@ -53,8 +71,15 @@ bool MatchManager::requestPlay(int plr, int lane, Card* card) {
     // Remove last card, which is most likely a duplicate
     if (cardFound) plrDeck.pop_back();
 
-    // TODO: Call ui frame updates here.
-
+    // Update deck, then board, then player
+    gamePanel->UpdateDeck(plr1Deck);
+    gamePanel->UpdateBoard(board);
+    if (plr == 1) {
+        gamePanel->UpdatePlayerStats(plr1->getHealth(), plr1Token, plr1->getRage());
+    } else {
+        gamePanel->UpdateEnemyStats(plr2->getHealth(), plr2Token, plr2Deck.size(), plr2->getRage());
+    }
+    std::cout << "Card was played! " << std::endl;
     return true;
 }
 
@@ -78,7 +103,7 @@ bool MatchManager::drawCard(int plr) {
     if (plr == 1) {
         gamePanel->UpdateDeck(plr1Deck);
     } else if (plr == 2) {
-        gamePanel->UpdateEnemyStats(this->plr2->getHealth(), this->plr2Token, this->plr2Deck.size());
+        gamePanel->UpdateEnemyStats(this->plr2->getHealth(), this->plr2Token, this->plr2Deck.size(), this->plr2->getRage());
     }
     return true;
 }
@@ -86,19 +111,21 @@ bool MatchManager::drawCard(int plr) {
 void MatchManager::endTurn() {
     std::cout << "turn ended" << std::endl;
     if (awaiting == 1) {
+        gamePanel->UpdateHeaderText("Enemy's Turn");
         awaiting = 2;
         return;
     }
+    gamePanel->UpdateHeaderText("Your Turn");
     // New turn, gain new tokens and draw a card each
     awaiting = 1;
     turn++;
     plr1Token = turn, plr2Token = turn;
     drawCard(1), drawCard(2);
-    // TODO: Call only frame updates here.
-}
-
-
     
+    // TODO: Call only frame updates here.
+    gamePanel->UpdatePlayerStats(plr1->getHealth(), plr1Token, plr1->getRage());
+    gamePanel->UpdateEnemyStats(plr2->getHealth(), plr2Token, plr2Deck.size(), plr2->getRage());
+}
 
 // Encapsulation
 int MatchManager::getTurn() const {

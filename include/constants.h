@@ -10,4 +10,5 @@ const int DECK_VIEW = 4; // You can see 4 decks in game without the arrow keys
 
 // GAME CONFIG
 const int MAX_DECK_SIZE = 10; // Maximum 5 cards per person
+const int NUM_LANES = 8;
 #endif

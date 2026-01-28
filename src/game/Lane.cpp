@@ -61,7 +61,12 @@ void Lane::enactLane() {
 int Lane::getLane() const {
     return this->lane_number;
 }
-
+Card* Lane::getPlr1Entity() const {
+    return this->plr1_entity;
+}
+Card* Lane::getPlr2Entity() const {
+    return this->plr2_entity;
+}
 Lane::~Lane() {
     if (plr1_entity) delete plr1_entity;
     if (plr2_entity) delete plr2_entity;
