@@ -1,5 +1,6 @@
 #include "ui/GamePanelHelper.h"
 #include "ui/GamePanel.h"
+#include "game/MatchManager.h"
 #include "constants.h"
 /*// Enemy UI components
 wxStaticText* enemyCards;
@@ -27,8 +28,8 @@ GamePanel::GamePanel(wxWindow* parent)
     plrDeck = {};
     selectedCard = nullptr;
     wxButton* selectedDeckButton = nullptr;
-    wxColour defaultDeckColour = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
-    
+    defaultColour = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
+    defaultFG = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT);
     // Init ui
     GamePanelHelper GPH;
     wxPanel* mainPanel = new wxPanel(this);
@@ -60,7 +61,7 @@ GamePanel::GamePanel(wxWindow* parent)
     
     // Unpack bottomPanel
     yourCards = bottomInf.cardsRemaining;
-    yourRage = bottomInf.rageText;
+    yourRage = bottomInf.rageBtn;
     yourHealth = bottomInf.healthText;
     yourTokens = bottomInf.tokensText;
     yourDeck = bottomInf.deck;
@@ -128,21 +129,21 @@ void GamePanel::RotateDeck(int page) {
             yourDeckPanel,
             wxID_ANY,
             // wxString::Format("C%d", from + i + 1),
-            plrDeck[from]->statToString(),
+            plrDeck[from]->displayCard(),
             wxDefaultPosition,
             wxSize(-1, 70)
         );
         Card* curCard = plrDeck[from];
         btn->Bind(wxEVT_BUTTON, [this, btn, curCard](wxCommandEvent&) {
             if (selectedCard == curCard) { // deselected on reclick
-                selectedDeckButton->SetBackgroundColour(defaultDeckColour);
+                selectedDeckButton->SetBackgroundColour(defaultColour);
                 selectedDeckButton = nullptr;
                 selectedCard = nullptr;
                 return;
             }
             // Reset previously selected button
             if (selectedDeckButton) {
-                selectedDeckButton->SetBackgroundColour(defaultDeckColour);
+                selectedDeckButton->SetBackgroundColour(defaultColour);
                 selectedDeckButton->Refresh();
             }
 
@@ -152,8 +153,6 @@ void GamePanel::RotateDeck(int page) {
 
             btn->SetBackgroundColour(*wxBLUE);
             btn->Refresh();
-
-            std::cout << "Selected card: " << selectedCard->getName() << std::endl;
         });
         yourDeck->Add(btn, 1, wxEXPAND);
     }
@@ -161,7 +160,6 @@ void GamePanel::RotateDeck(int page) {
     yourDeckPanel->Layout();
     curPage = page;
     selectedCard = nullptr;
-    std::cout << "on page " << curPage << " out of " << groups << std::endl;
 
 }
 
@@ -169,7 +167,16 @@ void GamePanel::UpdatePlayerStats(int newHP, int newPlayerTokens, int newRage) {
     // Update the player's health and tokens
     yourHealth->SetLabel("Health: " + std::to_string(newHP));
     yourTokens->SetLabel("Tokens: " + std::to_string(newPlayerTokens));
-    yourRage->SetLabel("Rage: " + std::to_string(newRage));
+    yourRage->SetLabel("Rage: " + std::to_string(newRage) + "%");
+    if (newRage == 100) {
+        yourRage->SetBackgroundColour(*wxGREEN);
+        yourRage->SetForegroundColour(*wxBLACK);
+    } else {
+        yourRage->SetBackgroundColour(defaultColour);
+        yourRage->SetForegroundColour(defaultFG);
+    }
+    yourRage->Refresh();
+
 }
 
 void GamePanel::UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize, int enemyRage) {
@@ -177,7 +184,7 @@ void GamePanel::UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSiz
     enemyHealth->SetLabel("Health: " + std::to_string(newHP));
     enemyTokens->SetLabel("Tokens: " + std::to_string(newEnemyTokens));
     enemyCards->SetLabel("Cards: " + std::to_string(enemyDeckSize));
-    this->enemyRage->SetLabel("Rage: " + std::to_string(enemyRage));
+    this->enemyRage->SetLabel("Rage: " + std::to_string(enemyRage) + "%");
 }
 
 void GamePanel::UpdateBoard(MainBoard* board) {
@@ -188,22 +195,22 @@ void GamePanel::UpdateBoard(MainBoard* board) {
         Card* enemy = curLane->getPlr2Entity();
         Card* yours = curLane->getPlr1Entity();
         if (enemy) {
-            enemyBoard[i]->SetLabel(enemy->statToString());
+            enemyBoard[i]->SetLabel(enemy->displayCard());
         } else {
             enemyBoard[i]->SetLabel("");
         }
         if (yours) {
-            yourBoard[i]->SetLabel(yours->statToString());
+            yourBoard[i]->SetLabel(yours->displayCard());
         } else {
             yourBoard[i]->SetLabel("");
         }
     }
-    std::cout << "board updated " << std::endl;
 }
 
 void GamePanel::UpdateHeaderText(std::string s) {
     headerMessage->SetLabel(s);
 }
+
 // Encap
 wxButton* GamePanel::getEndTurnButton() {
     return this->endTurnBtn;

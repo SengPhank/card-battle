@@ -1,19 +1,19 @@
 #include "game/MatchManager.h"
 #include "game/Lane.h"
-#include "cards/Card.h"
+#include "cards/EntityCard.h"
 #include <string>
-#include <iostream>
 
 // int lane_number;   
-// Card* plr1_entity; 
-// Card* plr2_entity;
+// EntityCard* plr1_entity; 
+// EntityCard* plr2_entity;
     
 Lane::Lane(MatchManager* gm, int laneNumber) : GM(gm), lane_number(laneNumber) {
     plr1_entity = nullptr;
     plr2_entity = nullptr;
 }
 
-bool Lane::placeCard(int player, Card* card) {
+bool Lane::placeCard(int player, EntityCard* card) {
+    std::cout << "plr " << player << " playing card" << std::endl;
     // Verify player and entity
     if (player == 1) {
         if (plr1_entity) return false;
@@ -27,21 +27,20 @@ bool Lane::placeCard(int player, Card* card) {
     return true;
 }
 void Lane::enactLane() {
-    std::cout << "Enacting in lane " << lane_number << std::endl;
     // Card1 do dmg to Card2 & vice versa
     if (plr2_entity != nullptr) {
         if (plr1_entity) {
-            plr2_entity->takeDamage(plr1_entity->getDamage());
+            plr2_entity->takeDamage(plr1_entity->getAttack());
         } else {
-            GM->damagePlr1(plr2_entity->getDamage());
+            GM->damagePlr1(plr2_entity->getAttack());
         }
     }
 
     if (plr1_entity != nullptr) {
         if (plr2_entity) {
-            plr1_entity->takeDamage(plr2_entity->getDamage());
+            plr1_entity->takeDamage(plr2_entity->getAttack());
         } else {
-            GM->damagePlr2(plr1_entity->getDamage());
+            GM->damagePlr2(plr1_entity->getAttack());
         }
     }
 
@@ -61,10 +60,10 @@ void Lane::enactLane() {
 int Lane::getLane() const {
     return this->lane_number;
 }
-Card* Lane::getPlr1Entity() const {
+EntityCard* Lane::getPlr1Entity() const {
     return this->plr1_entity;
 }
-Card* Lane::getPlr2Entity() const {
+EntityCard* Lane::getPlr2Entity() const {
     return this->plr2_entity;
 }
 Lane::~Lane() {

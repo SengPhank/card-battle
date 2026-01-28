@@ -25,7 +25,7 @@ struct DataBottomUI {
     wxStaticText* cardsRemaining;
     wxStaticText* tokensText;
     wxStaticText* healthText;
-    wxStaticText* rageText;
+    wxButton* rageBtn;
     wxButton* endTurnBtn;
     wxButton* leftDeck;
     wxButton* rightDeck;

@@ -8,10 +8,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(wxWidgets 3.2 REQUIRED COMPONENTS core base)
 include(${wxWidgets_USE_FILE})
 
+# Game Cards
+file(GLOB CARD_SOURCES
+    src/cards/entity/*.cpp
+    src/cards/instant/*.cpp
+)
+file(GLOB CHARACTER_SOURCES
+    src/characters/*.cpp
+)
 # Source
 add_library(card_battle_lib
     # Boot
-    src/boot/CardHandler.cpp
+    src/boot/CardManager.cpp
     src/boot/ui/MainWindow.cpp
     # UI Handling
     src/ui/GamePanel.cpp
@@ -22,10 +30,17 @@ add_library(card_battle_lib
     src/game/MatchManager.cpp
     src/game/Lane.cpp
     src/game/MainBoard.cpp
+    # AI Data
+    src/bots/BasicBot.cpp
+    # Cards
     src/cards/Card.cpp
+    src/cards/EntityCard.cpp
+    src/cards/InstantCard.cpp
+    ${CARD_SOURCES}
+    # Characters
     src/characters/Character.cpp
-    src/characters/Mage.cpp
-    src/characters/Tank.cpp
+    ${CHARACTER_SOURCES}
+    
 )
 
 target_include_directories(card_battle_lib

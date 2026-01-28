@@ -123,13 +123,13 @@ DataBottomUI GamePanelHelper::createBottom(wxPanel* parent) {
 
     // Your Stats panel
     wxBoxSizer* statsSizer = new wxBoxSizer(wxVERTICAL);
-    ui.tokensText = new wxStaticText(ui.panel, wxID_ANY, "Tokens: XX");
     ui.healthText = new wxStaticText(ui.panel, wxID_ANY, "Health: XX");
-    ui.rageText = new wxStaticText(ui.panel, wxID_ANY, "Rage: Y");
+    ui.tokensText = new wxStaticText(ui.panel, wxID_ANY, "Tokens: XX");
+    ui.rageBtn = new wxButton(ui.panel, wxID_ANY, "Rage: Y", wxDefaultPosition, wxSize(100, 50));
 
-    statsSizer->Add(ui.tokensText, 0, wxBOTTOM, 4);
     statsSizer->Add(ui.healthText, 0, wxBOTTOM, 4);
-    statsSizer->Add(ui.rageText, 0);
+    statsSizer->Add(ui.tokensText, 0, wxBOTTOM, 4);
+    statsSizer->Add(ui.rageBtn, 0);
 
     // End Turn button
     ui.endTurnBtn = new wxButton(ui.panel, wxID_ANY, "End Turn", wxDefaultPosition, wxSize(100, 50));

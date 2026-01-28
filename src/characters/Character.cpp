@@ -10,10 +10,6 @@ void Character::takeDamage(int atk) {
         rage = 100;
 }
 
-bool Character::special() {
-    return false; // default: no special
-}
-
 int Character::getHealth() const {
     return this->health;
 }

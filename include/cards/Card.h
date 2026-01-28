@@ -1,33 +1,32 @@
+// Card.h
 #pragma once
-#include <format>
 #include <string>
 #include <vector>
+#include <format>
+#include <iostream>
+
+class MatchManager;
+
 class Card {
 protected:
-    int health;
-    int attack;
-    int cost;
-    std::string name;
-    std::vector<std::string> abilities;
-
-    // Other data for assets
-    // string path/to/image
-    // string description
+    std::string name;        // Name
+    int cost;                // Cost (Tokens)
 
 public:
-    Card(std::string name, int health, int atk, int cost, std::vector<std::string> abilities);
+    Card(std::string name, int cost);
+    virtual ~Card() = default;
+    enum class Type { ENTITY, INSTANT };
 
-    // Functionality
-    void takeDamage(int atk);
-    Card* clone();
-    std::string statToString();
-    
     // Encapsulation
-    int getDamage() const;
-    int getHealth() const;
-    int getCost() const;
     std::string getName() const;
-    std::vector<std::string> getAbilities() const;
-
-    ~Card();
+    int getCost() const ;
+    virtual Type getType() const = 0;
+    virtual std::string getDescription() const = 0;  // More accurate new window description
+    virtual std::string displayCard() = 0;           // String readability placement
+    
+    
+    // Call for easy cloning
+    virtual Card* clone() const = 0;
+    // Is used on both Instants and Entities (sometimes)
+    virtual void onPlayed(MatchManager* manager, int lane);
 };

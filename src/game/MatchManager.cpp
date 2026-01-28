@@ -1,6 +1,7 @@
 #include "game/MatchManager.h"
 #include "game/MainBoard.h"
-#include "boot/CardHandler.h"
+#include "boot/CardManager.h"
+#include "bots/BasicBot.h"
 #include "constants.h"
 #include <iostream>
 
@@ -12,13 +13,15 @@
 // std::vector<Card*> plr2Deck; 
 // MainBoard* board;
     
-MatchManager::MatchManager(GamePanel* gamePanel, CardHandler* CH, Character* p1, Character* p2, int numLanes) : CH(CH), plr1(p1), plr2(p2) {
+MatchManager::MatchManager(GamePanel* gamePanel, CardManager* cardManager, Character* p1, Character* p2, int numLanes) : cardManager(cardManager), plr1(p1), plr2(p2) {
     this->turn = 1;
     this->awaiting = 1;  // default plr1 starts 
     this->plr1Token = 1; // default token start
     this->plr2Token = 1;
     this->gamePanel = gamePanel;
+    this->botPlayer = nullptr;
     board = new MainBoard(this, numLanes);
+
     // Link the end-turn button to this game
     gamePanel->getEndTurnButton()->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
         this->endTurn();
@@ -40,24 +43,57 @@ MatchManager::MatchManager(GamePanel* gamePanel, CardHandler* CH, Character* p1,
         });
     }
 
+    // OPTIONAL, INIT A BOT TO PLAY
+    // this->botPlayer = new BasicBot(2, this, board);
+
+    // Draw starting cards
+    for (int i = 0; i < CONSTANTS::START_DECK; i++) {
+        drawCard(1), drawCard(2);
+    }
+    // Init UI
+    gamePanel->UpdateDeck(plr1Deck);
+    gamePanel->UpdatePlayerStats(plr1->getHealth(), plr1Token, plr1->getRage());
+    gamePanel->UpdateEnemyStats(plr2->getHealth(), plr2Token, plr2Deck.size(), plr2->getRage());
     std::cout << "Initalized a game!\nPlayer1: " << plr1->getName() << " vs\nPlayer2: " << plr2->getName() << std::endl;
+}
+
+// Privates
+bool MatchManager::verifyCardIntegrity(const std::vector<Card*>& deck, Card* card) {
+    for (Card* i : deck) {
+        if (i == card) return true;
+    }
+    std::cout << "WHERE DID YOU FIND THIS CARD???" << std::endl;
+    return false;
 }
 
 // Player interaction
 bool MatchManager::requestPlay(int plr, int lane, Card* card) {
-    std::cout << "attempting to play selected card at " << lane << std::endl;
     // Verify turn and cost
     if (awaiting != plr) return false;
     int& plrToken = (awaiting == 1) ? plr1Token : plr2Token;
+    std::vector<Card*>& plrDeck = (plr == 1) ? plr1Deck : plr2Deck;
     if (card == nullptr) return false;
     if (card->getCost() > plrToken) return false;
-    // Verify card was placed to pay the price;
-    if (!board->playCard(plr, lane, card)) return false;
+    if (!verifyCardIntegrity(plrDeck, card)) return false; // WHERE DID YOU FIND THIS CARD?
+
+    // Check type of card requesting to be played
+    if (card->getType() == Card::Type::ENTITY) {
+        std::cout << "PLAYING ENTITY " << std::endl;
+        EntityCard* eCard = dynamic_cast<EntityCard*>(card);
+        if (!eCard || !board->playCard(plr, lane, eCard)) return false;
+    } else if (card->getType() == Card::Type::INSTANT) {
+        std::cout << "PLAYING INSTANT " << std::endl;
+    } else {
+        // Unknown card type
+        return false; 
+    }
+
+    // Verify card was placed before paying
     plrToken -= card->getCost();
-
+    // Play any (on played) effects
+    card->onPlayed(this, lane);
+    
     // Remove it from the deck in-place
-    std::vector<Card*>& plrDeck = (plr == 1) ? plr1Deck : plr2Deck;
-
     bool cardFound = false;
     for (int i = 0; i < plrDeck.size(); i++) {
         if (plrDeck[i] == card) {
@@ -79,7 +115,6 @@ bool MatchManager::requestPlay(int plr, int lane, Card* card) {
     } else {
         gamePanel->UpdateEnemyStats(plr2->getHealth(), plr2Token, plr2Deck.size(), plr2->getRage());
     }
-    std::cout << "Card was played! " << std::endl;
     return true;
 }
 
@@ -97,8 +132,7 @@ bool MatchManager::drawCard(int plr) {
     // CARD CAP
     std::vector<Card*>& plrDeck = (plr == 1) ? plr1Deck : plr2Deck;
     if (plrDeck.size() >= CONSTANTS::MAX_DECK_SIZE) return false; 
-    Card randoCard = CH->getRandomCard();
-    plrDeck.push_back(randoCard.clone());
+    plrDeck.push_back(cardManager->chooseRandomCard()->clone());
     // update plrs card
     if (plr == 1) {
         gamePanel->UpdateDeck(plr1Deck);
@@ -109,18 +143,35 @@ bool MatchManager::drawCard(int plr) {
 }
 
 void MatchManager::endTurn() {
-    std::cout << "turn ended" << std::endl;
+    std::cout << "Turn ended" << std::endl;
     if (awaiting == 1) {
-        gamePanel->UpdateHeaderText("Enemy's Turn");
+        gamePanel->UpdateHeaderText("Plr2's Turn");
         awaiting = 2;
+        // Bot makes their plays
+        if (botPlayer != nullptr) {
+            botPlayer->takeTurn(plr2Deck, plr2Token);
+        }
+        gamePanel->UpdateHeaderText("Waiting to enact board...");
         return;
     }
-    gamePanel->UpdateHeaderText("Your Turn");
-    // New turn, gain new tokens and draw a card each
+    // Play the board
+    board->enactBoard();
+    gamePanel->UpdateBoard(board);
+
+    // New Round, gain new tokens and draw a card each
+    gamePanel->UpdateHeaderText("Plr1's Turn");
     awaiting = 1;
     turn++;
     plr1Token = turn, plr2Token = turn;
     drawCard(1), drawCard(2);
+    // Run any (new round) here
+    for (Lane* i : this->board->getLanes()) {
+        EntityCard* yours = i->getPlr1Entity();
+        EntityCard* enemies = i->getPlr2Entity();
+        if (yours) yours->onNewRound(this);
+        if (enemies) enemies->onNewRound(this);
+    }
+    
     
     // TODO: Call only frame updates here.
     gamePanel->UpdatePlayerStats(plr1->getHealth(), plr1Token, plr1->getRage());
@@ -134,11 +185,14 @@ int MatchManager::getTurn() const {
 int MatchManager::getAwaiting() const {
     return this->awaiting;
 }
-
+MainBoard* MatchManager::getBoard() const {
+    return this->board;
+}
 MatchManager::~MatchManager() {
     delete plr1;
     delete plr2;
     delete board;
+    if (botPlayer) delete botPlayer;
     for (Card* i : plr1Deck) {
         delete i;
     }

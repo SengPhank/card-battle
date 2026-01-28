@@ -11,7 +11,7 @@ public:
     virtual ~Character() = default;
 
     virtual void takeDamage(int atk);
-    virtual bool special();  
+    virtual bool special() = 0;  
 
     // Encapsulation
     int getHealth() const;

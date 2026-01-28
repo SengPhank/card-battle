@@ -54,9 +54,9 @@ private:
 
     // Your UI components
     wxStaticText* yourCards;
-    wxStaticText* yourRage;
     wxStaticText* yourHealth;
     wxStaticText* yourTokens;
+    wxButton* yourRage;
     wxPanel* yourDeckPanel;
     wxGridSizer* yourDeck;
 
@@ -71,7 +71,8 @@ private:
     wxButton* settingsBtn;
     wxStaticText* headerMessage;
     wxButton* selectedDeckButton;
-    wxColour defaultDeckColour;
+    wxColour defaultColour;
+    wxColour defaultFG;
 
     // Storage
     std::vector<Card*> plrDeck; // the last stored player deck
@@ -89,7 +90,7 @@ public:
     void UpdatePlayerStats(int newHP, int newPlayerTokens, int newRage);
     void UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize, int enemyRage);
     void UpdateBoard(MainBoard* board);
-
+    
     // Encap
     wxButton* getEndTurnButton();
     std::vector<wxButton*> getBoardButtons1() const;
