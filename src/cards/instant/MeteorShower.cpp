@@ -19,6 +19,7 @@ std::string MeteorShower::getDescription() const {
     return s;
 }
 
-void MeteorShower::onPlayed(MatchManager* manager, int lane) {
+bool MeteorShower::onPlayed(MatchManager* manager, int lane) {
     std::cout << "DEALING 1 DAMAGE TO ALL ENEMSS.. " << std::endl;
+    return true;
 }

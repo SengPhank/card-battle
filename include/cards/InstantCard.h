@@ -33,7 +33,7 @@ public:
     virtual std::string getDescription() const;
     std::string displayCard() override;
 
-    // On play effects
-    void onPlayed(MatchManager* manager, int lane) override;
+    // On play effects (returns true for successful, false if not)
+    bool onPlayed(MatchManager* manager, int lane) override;
     
 };

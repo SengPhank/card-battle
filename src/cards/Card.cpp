@@ -7,8 +7,8 @@ std::string description; // Information about this card (what it does, etc)
 std::vector<std::string> abilities;
 */
 
-Card::Card(std::string name, int cost) 
-: name(name), cost(cost) {}
+Card::Card(std::string name, int cost, int owner) 
+: name(name), cost(cost), owner(owner) {}
 
 // Encapsulation
 std::string Card::getName() const {
@@ -17,6 +17,11 @@ std::string Card::getName() const {
 int Card::getCost() const {
     return this->cost;
 }
-
+int Card::getOwner() const {
+    return this->owner;
+}
+void Card::setOwner(int owner) {
+    this->owner = owner;
+}
 // Default does nothing
-void Card::onPlayed(MatchManager* manager, int lane) {}
+bool Card::onPlayed(MatchManager* manager, int lane) {return false;}

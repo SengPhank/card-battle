@@ -7,6 +7,7 @@ InstantCard::InstantCard(std::string name, int cost)
     this->useEnemyEnt = false;
     this->useSelfChar = false;
     this->useSelfEnt = false;
+    this->useAnyBoard = false;
 }
 
 std::string InstantCard::displayCard() {
@@ -26,7 +27,7 @@ std::string InstantCard::getDescription() const {
     return "INSERT_INSTANT_CARD_DESCRIPTION_HERE";
 }
 
-void InstantCard::onPlayed(MatchManager* manager, int lane) {}
+bool InstantCard::onPlayed(MatchManager* manager, int lane) { return false; }
 
 // Encap
 bool InstantCard::getUseEnemyChar() const { return this->useEnemyChar; }

@@ -51,6 +51,10 @@ public:
     // Encapsulation
     int getTurn() const;
     int getAwaiting() const;
+    int getPlr1Token() const;
+    int getPlr2Token() const;
+    void setPlr1Token(int token);
+    void setPlr2Token(int token);
     MainBoard* getBoard() const;
     ~MatchManager();
 };

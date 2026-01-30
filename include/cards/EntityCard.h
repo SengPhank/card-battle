@@ -4,6 +4,8 @@
 
 class EntityCard : public Card {
 protected:
+    const int DEFAULT_HEALTH;
+    const int DEFAULT_ATTACK;
     int health;
     int attack;
     std::vector<std::string> abilities;
@@ -17,14 +19,19 @@ public:
     Card* clone() const override;
 
     // Encapsulation
+    int getDFHEALTH() const;
+    int getDFATTACK() const;
     int getHealth() const;
     int getAttack() const;
+    void setHealth(int health);
+    void setAttack(int attack);
+    
     std::vector<std::string> getAbilities() const;
     Type getType() const override;
     virtual std::string getDescription() const;
 
     // Behaviours/Hooks
-    void onPlayed(MatchManager* manager, int lane) override; // REQUIRED, everything does nothing by default
+    bool onPlayed(MatchManager* manager, int lane) override; // REQUIRED, everything does nothing by default
     virtual void onNewRound(MatchManager* manager);
     virtual void onCardDraw(MatchManager* manager);
     virtual void onRage(MatchManager* manager);

@@ -87,10 +87,12 @@ bool MatchManager::requestPlay(int plr, int lane, Card* card) {
         return false; 
     }
 
+    // Play any (on played) effects. If its an instant, make sure its actually played
+    bool played = card->onPlayed(this, lane);
+    if (card->getType() == Card::Type::INSTANT && !played) return false; 
+
     // Verify card was placed before paying
     plrToken -= card->getCost();
-    // Play any (on played) effects
-    card->onPlayed(this, lane);
     
     // Remove it from the deck in-place
     bool cardFound = false;
@@ -131,7 +133,9 @@ bool MatchManager::drawCard(int plr) {
     // CARD CAP
     std::vector<Card*>& plrDeck = (plr == 1) ? plr1Deck : plr2Deck;
     if (plrDeck.size() >= CONSTANTS::MAX_DECK_SIZE) return false; 
-    plrDeck.push_back(cardManager->chooseRandomCard()->clone());
+    Card* randomCard = cardManager->chooseRandomCard()->clone();
+    randomCard->setOwner(plr); // Provide ownership
+    plrDeck.push_back(randomCard);
     // update plrs card
     if (plr == 1) {
         gamePanel->UpdateDeck(plr1Deck);
@@ -178,15 +182,14 @@ void MatchManager::endTurn() {
 }
 
 // Encapsulation
-int MatchManager::getTurn() const {
-    return this->turn;
-}
-int MatchManager::getAwaiting() const {
-    return this->awaiting;
-}
-MainBoard* MatchManager::getBoard() const {
-    return this->board;
-}
+int MatchManager::getTurn() const { return this->turn; }
+int MatchManager::getAwaiting() const { return this->awaiting; }
+MainBoard* MatchManager::getBoard() const { return this->board; }
+int MatchManager::getPlr1Token() const { return this->plr1Token; }
+int MatchManager::getPlr2Token() const { return this->plr2Token; }
+void MatchManager::setPlr1Token(int token) {this->plr1Token = token;}
+void MatchManager::setPlr2Token(int token) {this->plr1Token = token;}
+
 MatchManager::~MatchManager() {
     delete plr1;
     delete plr2;

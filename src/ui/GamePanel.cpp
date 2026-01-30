@@ -239,9 +239,7 @@ void GamePanel::tapCard(wxButton* btn, Card* card) {
 // Default, light all X lane to colour
 void GamePanel::LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied, int lane) {
     std::vector<Lane*> allLanes;
-    std::cout << "changing lane, " << allLanes.size() << std::endl;
     if (StoredMatch) allLanes = StoredMatch->getBoard()->getLanes();
-    std::cout << "csze of lanes, " << allLanes.size() << std::endl;
 
     if (yourLane) {
         if (lane == -1) {
@@ -280,7 +278,6 @@ void GamePanel::LightLane(bool yourLane, const wxColor& bgColour, const wxColor&
             enemyBoard[lane]->SetForegroundColour(fgColour);
         }
     }
-    std::cout << "FINISHED" << std::endl;
 }
 
 void GamePanel::UpdateHeaderText(std::string s) {
