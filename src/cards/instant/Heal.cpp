@@ -1,7 +1,7 @@
 #include "cards/instant/Heal.h"
 #include "game/MatchManager.h"
 
-Heal::Heal() : InstantCard("Heal", 2) {
+Heal::Heal() : InstantCard("Heal⛑️", 2) {
     // Can use it on your own character, or a selected card
     this->setUseSelfChar(true);
     this->setUseSelfEnt(true);

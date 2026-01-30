@@ -8,7 +8,7 @@ EntityCard::EntityCard(std::string name, int cost, int health, int attack, std::
 }
 
 std::string EntityCard::displayCard() {
-    std::string s = std::format("ENTITY\n{}\nHp: {}, Atk: {}\nCost: ${}",
+    std::string s = std::format("ENTITY\n{}\n❤️ {} | ✊ {}\n💵 {}",
         name, health, attack, cost
     );
     return s;

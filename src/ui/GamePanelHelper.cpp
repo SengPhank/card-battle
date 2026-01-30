@@ -1,5 +1,5 @@
 #include "ui/GamePanelHelper.h"
-
+#include "constants.h"
 // public:
 //     GamePanelHelper();
 //     wxPanel* createHeader();
@@ -96,8 +96,8 @@ DataBottomUI GamePanelHelper::createBottom(wxPanel* parent) {
     ui.cardsRemaining->SetForegroundColour(*wxWHITE);
 
     // Cards grid (how many you can view at once)
-    ui.deck = new wxGridSizer(1, 4, 8, 8);
-    // for (int i = 0; i < 4; ++i) {
+    ui.deck = new wxGridSizer(1, CONSTANTS::DECK_VIEW, 8, 8);
+    // for (int i = 0; i < CONSTANTS::DECK_VIEW; ++i) {
     //     wxButton* btn = new wxButton(
     //         ui.deckPanel,
     //         wxID_ANY,

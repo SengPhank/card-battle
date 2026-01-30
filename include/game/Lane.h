@@ -9,12 +9,16 @@ private:
     MatchManager* GM;
     int lane_number;    // For sorting (lane 1 goes first, etc)
     EntityCard* plr1_entity;  // Could possible add multiple cards to more lane later. for now, 1 each
-    EntityCard* plr2_entity;
+    EntityCard* plr2_entity;  // You are player 1 (plr1 is bottom lane), and player 2 is opponent (top lane)
 public:
     Lane(MatchManager* gm, int laneNumber);       // Initializes empty lane
+    // Functional
     bool placeCard(int player, EntityCard* card);      // Returns true or false if successful
     void enactLane();                                // Play this lane
-
+    
+    // Helper
+    bool damagePlrEntity(int plr, int dmg);
+    void clearDefeated();
     // Encapsulation
     int getLane() const;
     EntityCard* getPlr1Entity() const;

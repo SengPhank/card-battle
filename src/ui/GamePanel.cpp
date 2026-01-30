@@ -124,19 +124,15 @@ void GamePanel::RotateDeck(int page) {
     int to = from + CONSTANTS::DECK_VIEW;
     for (from; from < to; from++) {
         if (from >= plrDeck.size()) break;
-        wxButton* btn = new wxButton(
-            yourDeckPanel,
-            wxID_ANY,
-            // wxString::Format("C%d", from + i + 1),
-            plrDeck[from]->displayCard(),
-            wxDefaultPosition,
-            wxSize(-1, 70)
-        );
+        CardWidget* cardUI = new CardWidget(yourDeckPanel, plrDeck[from]);
+
         Card* curCard = plrDeck[from];
-        btn->Bind(wxEVT_BUTTON, [this, btn, curCard](wxCommandEvent&) {
-            this->tapCard(btn, curCard);
+        cardUI->Bind(wxEVT_LEFT_DOWN, [this, cardUI, curCard](wxMouseEvent&) {
+            this->tapCard(cardUI, curCard);
         });
-        yourDeck->Add(btn, 1, wxEXPAND);
+
+        yourDeck->Add(cardUI, 1, wxEXPAND);
+
     }
     // Refresh layout
     yourDeckPanel->Layout();
@@ -181,61 +177,52 @@ void GamePanel::UpdateBoard(MainBoard* board) {
         Card* enemy = curLane->getPlr2Entity();
         Card* yours = curLane->getPlr1Entity();
         if (enemy) {
-            enemyBoard[i]->SetLabel(enemy->displayCard());
+            enemyBoard[i]->SetLabel(wxString::FromUTF8(enemy->displayCard()));
         } else {
             enemyBoard[i]->SetLabel("");
         }
         if (yours) {
-            yourBoard[i]->SetLabel(yours->displayCard());
+            yourBoard[i]->SetLabel(wxString::FromUTF8(yours->displayCard()));
         } else {
             yourBoard[i]->SetLabel("");
         }
     }
 }
-void GamePanel::tapCard(wxButton* btn, Card* card) {
-    // Set selected card to different colour
-    if (selectedCard == card) { // deselected on reclick
-        btn->SetBackgroundColour(*defaultColour);
-        btn->SetForegroundColour(*defaultFG);
-        btn = nullptr;
+void GamePanel::tapCard(CardWidget* widget, Card* card) {
+
+    // Deselect if clicking same card
+    if (selectedCard == card) {
+        widget->setSelected(false);
         selectedCard = nullptr;
-        // Reset lane colours
+
         LightLane(true, *defaultColour, *defaultFG);
         LightLane(false, *defaultColour, *defaultFG);
         return;
     }
-    // Deselect last card
+
+    // Clear previous selection
     if (selectedDeckButton) {
-        // Recalculate ui
-        LightLane(true, *defaultColour, *defaultFG);
-        LightLane(false, *defaultColour, *defaultFG);
-        selectedDeckButton->SetBackgroundColour(*defaultColour);
-        selectedDeckButton->SetForegroundColour(*defaultFG);
-    }
-    // Reset previously selected button
-    if (btn) {
-        btn->SetBackgroundColour(*defaultColour);
-        btn->Refresh();
+        selectedDeckButton->setSelected(false);
     }
 
-    // Set new selection
+    selectedDeckButton = widget;
     selectedCard = card;
-    selectedDeckButton = btn;
+
+    widget->setSelected(true);
+
     // Highlight lanes
     if (card->getType() == Card::Type::INSTANT) {
-        InstantCard* curCard = dynamic_cast<InstantCard*>(card);
-        if (curCard->getUseEnemyEnt()) LightLane(false, *wxRED, *wxWHITE, 1);
-        if (curCard->getUseSelfEnt()) LightLane(true, *wxGREEN, *wxBLACK, 1);
-        if (curCard->getUseAnyBoard()) LightLane(true, *wxYELLOW, *wxBLACK);
-        if (curCard->getUseAnyBoard()) LightLane(false, *wxYELLOW, *wxBLACK);
-    } else {
-        LightLane(false, *defaultColour, *defaultFG);
+        InstantCard* curCard = (InstantCard*)card;
+        if (curCard->getUseEnemyEnt())
+            LightLane(false, *wxRED, *wxWHITE, 1);
+        if (curCard->getUseSelfEnt())
+            LightLane(true, *wxGREEN, *wxBLACK, 1);
+    }
+    else {
         LightLane(true, *wxGREEN, *wxBLACK, 0);
     }
-    btn->SetBackgroundColour(*wxBLUE);
-    btn->SetForegroundColour(*wxWHITE);
-    btn->Refresh();
 }
+
 // Default, light all X lane to colour
 void GamePanel::LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied, int lane) {
     std::vector<Lane*> allLanes;

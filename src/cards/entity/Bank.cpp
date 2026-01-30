@@ -2,7 +2,7 @@
 #include "game/MatchManager.h"
 
 Bank::Bank() 
-: EntityCard("Bank", 3, 2, 1) {}
+: EntityCard("Bank 🏦", 3, 2, 1) {}
 Bank::~Bank() {}
 
 Card* Bank::clone() const {

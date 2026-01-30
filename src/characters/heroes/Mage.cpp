@@ -16,9 +16,7 @@ bool Mage::activateRage(MatchManager* manager) {
     int dmg = 2, heal = 2;
     // Deal X damage to all enemy card
     for (Lane* i : allLanes) {
-        EntityCard* ent = i->getPlr2Entity();
-        if (!ent) continue;
-        ent->setHealth(ent->getHealth()-dmg);
+        i->damagePlrEntity(2, dmg);
     }
     for (Lane* i : allLanes) {
         EntityCard* ent = i->getPlr1Entity();

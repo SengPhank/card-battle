@@ -11,7 +11,7 @@ InstantCard::InstantCard(std::string name, int cost)
 }
 
 std::string InstantCard::displayCard() {
-    std::string s = std::format("INSTANT\n{}\nCost: ${}",
+    std::string s = std::format("INSTANT\n{}\n💵 {}",
         name, cost
     );
     return s;

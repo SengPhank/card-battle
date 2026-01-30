@@ -36,6 +36,7 @@ struct DataBottomUI {
 
 #include "game/MainBoard.h"
 #include "ui/GamePanelHelper.h"
+#include "ui/CardWidget.h"
 #include <wx/wx.h>
 #include <wx/grid.h>
 #include <vector>
@@ -70,7 +71,7 @@ private:
     // Other UI
     wxButton* settingsBtn;
     wxStaticText* headerMessage;
-    wxButton* selectedDeckButton;
+    CardWidget* selectedDeckButton;
     wxColour defaultColour;
     wxColour defaultFG;
 
@@ -93,7 +94,7 @@ public:
     void UpdateBoard(MainBoard* board);
     // Occupied: 0 Not occupied, 1 = Has to be occupied, -1 = doesnt matter. 
     void LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied = -1, int lane = -1);
-    void tapCard(wxButton* btn, Card* card);
+    void tapCard(CardWidget* widget, Card* card);
 
     // Encap
     wxButton* getEndTurnButton() const;
