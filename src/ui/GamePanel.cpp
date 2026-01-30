@@ -285,10 +285,9 @@ void GamePanel::UpdateHeaderText(std::string s) {
 }
 
 // Encap
-wxButton* GamePanel::getEndTurnButton() {
-    return this->endTurnBtn;
-}
-
+wxButton* GamePanel::getEndTurnButton() const {return this->endTurnBtn;}
+wxButton* GamePanel::getYourRageButton() const {return this->yourRage;}
+wxButton* GamePanel::getHelpPageButton() const {return nullptr;} // TBA
 std::vector<wxButton*> GamePanel::getBoardButtons1() const {
     return this->enemyBoard;
 }

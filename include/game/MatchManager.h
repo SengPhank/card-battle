@@ -48,11 +48,17 @@ public:
     bool drawCard(int plr);
     void endTurn();
     
+    // UI
+    void updatePlrStatsUI() const;
+    void updateEnemyStatsUI() const;
+
     // Encapsulation
     int getTurn() const;
     int getAwaiting() const;
     int getPlr1Token() const;
     int getPlr2Token() const;
+    std::vector<Card*> getPlr1Deck() const;
+    std::vector<Card*> getPlr2Deck() const;
     void setPlr1Token(int token);
     void setPlr2Token(int token);
     MainBoard* getBoard() const;

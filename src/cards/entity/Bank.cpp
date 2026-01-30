@@ -18,8 +18,6 @@ std::string Bank::getDescription() const {
 
 void Bank::onNewRound(MatchManager* manager) {
     int owner = this->getOwner();
-    std::cout << "Bank gives +1 to " << owner << std::endl; 
-
     if (owner == 1) {
         manager->setPlr1Token(manager->getPlr1Token()+1);
     } else if (owner == 2) {

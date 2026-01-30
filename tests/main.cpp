@@ -1,7 +1,6 @@
 #include "game/MatchManager.h"
-#include "characters/Mage.h"
-#include "characters/Tank.h"
 #include "boot/CardManager.h"
+#include "boot/CharacterManager.h"
 #include "bots/BasicBot.h"
 #include "boot/ui/MainWindow.h"
 #include "constants.h"
@@ -21,20 +20,21 @@ bool mainApp::OnInit() {
 
     // Initialize Data
     CardManager* cardManager = new CardManager();
-    std::cout << "CARD DATA LOADED! THERE ARE " << cardManager->getCardLength() << std::endl;
+    CharacterManager* characterManager = new CharacterManager();
+    std::cout << "Card Loaded, " << cardManager->getEntityLength() << " entities and " << cardManager->getInstantLength() << " instant cards found" << std::endl;
+    std::cout << "Character Loaded, " << characterManager->getAllCharacters().size() << " characters found" << std::endl;
 
     // Initialize UI
     MainWindow* gameFrame = new MainWindow();
     std::cout << "UI INITIALIZED! " << std::endl;
 
     // Initialize a Match manager
-    Mage* mage = new Mage(50, 10);
-    Tank* tank = new Tank(100, 30);
-    MatchManager* MM = new MatchManager(gameFrame->getGamePanel(), cardManager, mage, tank, CONSTANTS::NUM_LANES);
-    std::cout << "MATCH INITIALIZED! " << std::endl;
+    Character* hero1 = characterManager->getRandomCharacter()->clone();
+    Character* hero2 = characterManager->getRandomCharacter()->clone();
+    MatchManager* matchManager = new MatchManager(gameFrame->getGamePanel(), cardManager, hero1, hero2, CONSTANTS::NUM_LANES);
 
     // Link the gamepanel to our current game (Match Manager)
-    gameFrame->getGamePanel()->setMatchManager(MM);
+    gameFrame->getGamePanel()->setMatchManager(matchManager);
     std::cout << "LINK GAME TO PANEL!" << std::endl;
 
     // Show frame

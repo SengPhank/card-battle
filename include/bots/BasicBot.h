@@ -14,6 +14,7 @@ This bot's strategy is:
 class BasicBot {
 private:
     int playerId;                 // Which player this bot controls (1 or 2)
+    Character* character;         // Who is this bot playing as?
     MatchManager* matchManager;   // Interface to perform actions
     MainBoard* board;             // Read-only game state
 
@@ -22,7 +23,7 @@ private:
     Lane* chooseDefensiveLane();
 
 public:
-    BasicBot(int playerId, MatchManager* matchManager, MainBoard* board);
+    BasicBot(int playerId, Character* character, MatchManager* matchManager, MainBoard* board);
 
     // Called when it's this bot's turn
     void takeTurn(const std::vector<Card*>& deck, int availableTokens);

@@ -61,6 +61,9 @@ Card* CardManager::chooseRandomCard() {
 }
 
 // Encap
-int CardManager::getCardLength() const {
-    return this->allCards.size();
+int CardManager::getEntityLength() const {
+    return this->entityStore.size();
+}
+int CardManager::getInstantLength() const {
+    return this->instantStore.size();
 }

@@ -96,7 +96,9 @@ public:
     void tapCard(wxButton* btn, Card* card);
 
     // Encap
-    wxButton* getEndTurnButton();
+    wxButton* getEndTurnButton() const;
+    wxButton* getYourRageButton() const;
+    wxButton* getHelpPageButton() const;
     std::vector<wxButton*> getBoardButtons1() const;
     std::vector<wxButton*> getBoardButtons2() const;
     MatchManager* getMatchManager() const;

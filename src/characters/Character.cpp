@@ -1,22 +1,32 @@
 #include "characters/Character.h"
 
 Character::Character(int health, int rage, std::string name) : 
-health(health), rage(rage), name(name) {}
+DEFAULT_HEALTH(health), DEFAULT_RAGE(rage), name(name) {
+    this->health = DEFAULT_HEALTH;
+    this->rage = DEFAULT_RAGE;
+}
+
+int Character::rageCalculation(int damageTaken) {
+    // Gain rage proportion to damage
+    int base = damageTaken * 6;
+    int variance = base / 3;
+
+    int gained = base + (rand() % (variance + 1));
+    gained = std::min(gained, 40); // cap of 40 rage max
+    return gained;
+}
 
 void Character::takeDamage(int atk) {
     health -= atk;
-    rage += 5;
-    if (rage > 100)
-        rage = 100;
+    rage += rageCalculation(atk);
+    rage = std::min(100, rage);
 }
 
-int Character::getHealth() const {
-    return this->health;
-}
-int Character::getRage() const {
-    return this->rage;
-}
+int Character::getDFHEALTH() const {return this->DEFAULT_HEALTH;}
+int Character::getDFRAGE() const {return this->DEFAULT_RAGE;}
+int Character::getHealth() const { return this->health;}
+int Character::getRage() const {return this->rage;}
+void Character::setRage(int rage) {this->rage=rage;}
+void Character::setHealth(int health) {this->health=health;}
+std::string Character::getName() const {return this->name;}
 
-std::string Character::getName() const {
-    return this->name;
-}

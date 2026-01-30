@@ -8,19 +8,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(wxWidgets 3.2 REQUIRED COMPONENTS core base)
 include(${wxWidgets_USE_FILE})
 
-# Game Cards
+# Add all Game Cards
 file(GLOB CARD_SOURCES
     src/cards/entity/*.cpp
     src/cards/instant/*.cpp
 )
+# Add all Characters
 file(GLOB CHARACTER_SOURCES
-    src/characters/*.cpp
+    src/characters/heroes/*.cpp
 )
+
 # Source
 add_library(card_battle_lib
     # Boot
-    src/boot/CardManager.cpp
     src/boot/ui/MainWindow.cpp
+    src/boot/CardManager.cpp
+    src/boot/CharacterManager.cpp
     # UI Handling
     src/ui/GamePanel.cpp
     src/ui/GamePanelHelper.cpp

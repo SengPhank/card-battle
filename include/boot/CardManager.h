@@ -21,7 +21,7 @@ public:
     Card* chooseRandomCard();
 
     // Encap
-    int getCardLength() const;
-
+    int getEntityLength() const;
+    int getInstantLength() const;
 
 };

@@ -2,10 +2,12 @@
 #include <vector>
 #include <iostream>
 
-BasicBot::BasicBot(int playerId, MatchManager* matchManager, MainBoard* board) {
+BasicBot::BasicBot(int playerId, Character* character, MatchManager* matchManager, MainBoard* board) {
     this->playerId = playerId;
     this->matchManager = matchManager;
     this->board = board;
+    this->character = character;
+
 }
 
 // Private Decision making
@@ -46,7 +48,9 @@ void BasicBot::takeTurn(const std::vector<Card*>& deck, int availableTokens) {
     std::cout << "BOT IS THINKING... " << std::endl;
     int oppo = (playerId == 1) ? 2 : 1;
     // It'll initially want to play its rage ability first
-
+    while (character->getRage() == 100) {
+        character->activateRage(matchManager);
+    }
     // Then play some cards        
     Card* cardPlay = chooseMostExpensiveCard(deck, availableTokens);
     Lane* lanePlay = chooseDefensiveLane(); // Try strategy

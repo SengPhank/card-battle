@@ -41,9 +41,21 @@ MatchManager::MatchManager(GamePanel* gamePanel, CardManager* cardManager, Chara
             requestPlay(1, i, this->gamePanel->getSelectedCard());
         });
     }
+    // Link to rage button
+    gamePanel->getYourRageButton()->Bind(wxEVT_BUTTON, [this, gamePanel](wxCommandEvent&) {
+        // Rebind if player 1 is no longer strictly the player
+        if (this->getAwaiting() == 1) {
+            bool rageActivated = this->plr1->activateRage(this);
+            if (rageActivated) {
+                updatePlrStatsUI();
+                gamePanel->UpdateDeck(this->getPlr1Deck());
+                gamePanel->UpdateBoard(this->getBoard());
+            }
+        }
+    });
 
     // OPTIONAL, INIT A BOT TO PLAY
-    this->botPlayer = new BasicBot(2, this, board);
+    this->botPlayer = new BasicBot(2, p2, this, board);
 
     // Draw starting cards
     for (int i = 0; i < CONSTANTS::START_DECK; i++) {
@@ -51,8 +63,8 @@ MatchManager::MatchManager(GamePanel* gamePanel, CardManager* cardManager, Chara
     }
     // Init UI
     gamePanel->UpdateDeck(plr1Deck);
-    gamePanel->UpdatePlayerStats(plr1->getHealth(), plr1Token, plr1->getRage());
-    gamePanel->UpdateEnemyStats(plr2->getHealth(), plr2Token, plr2Deck.size(), plr2->getRage());
+    this->updatePlrStatsUI();
+    this->updateEnemyStatsUI();
     std::cout << "Initalized a game!\nPlayer1: " << plr1->getName() << " vs\nPlayer2: " << plr2->getName() << std::endl;
 }
 
@@ -112,9 +124,9 @@ bool MatchManager::requestPlay(int plr, int lane, Card* card) {
     gamePanel->UpdateDeck(plr1Deck);
     gamePanel->UpdateBoard(board);
     if (plr == 1) {
-        gamePanel->UpdatePlayerStats(plr1->getHealth(), plr1Token, plr1->getRage());
+        updatePlrStatsUI();
     } else {
-        gamePanel->UpdateEnemyStats(plr2->getHealth(), plr2Token, plr2Deck.size(), plr2->getRage());
+        updateEnemyStatsUI();
     }
     return true;
 }
@@ -146,7 +158,7 @@ bool MatchManager::drawCard(int plr) {
     if (plr == 1) {
         gamePanel->UpdateDeck(plr1Deck);
     } else if (plr == 2) {
-        gamePanel->UpdateEnemyStats(this->plr2->getHealth(), this->plr2Token, this->plr2Deck.size(), this->plr2->getRage());
+        updateEnemyStatsUI();
     }
     return true;
 }
@@ -183,16 +195,27 @@ void MatchManager::endTurn() {
     
     
     // TODO: Call only frame updates here.
-    gamePanel->UpdatePlayerStats(plr1->getHealth(), plr1Token, plr1->getRage());
-    gamePanel->UpdateEnemyStats(plr2->getHealth(), plr2Token, plr2Deck.size(), plr2->getRage());
+    this->updatePlrStatsUI();
+    this->updateEnemyStatsUI();
 }
 
+// UI assistants
+void MatchManager::updatePlrStatsUI() const {
+    if (gamePanel == nullptr) return;
+    gamePanel->UpdatePlayerStats(plr1->getHealth(), plr1Token, plr1->getRage());
+}
+void MatchManager::updateEnemyStatsUI() const {
+    if (gamePanel == nullptr) return;
+    gamePanel->UpdateEnemyStats(plr2->getHealth(), plr2Token, plr2Deck.size(), plr2->getRage());
+}
 // Encapsulation
 int MatchManager::getTurn() const { return this->turn; }
 int MatchManager::getAwaiting() const { return this->awaiting; }
 MainBoard* MatchManager::getBoard() const { return this->board; }
 int MatchManager::getPlr1Token() const { return this->plr1Token; }
 int MatchManager::getPlr2Token() const { return this->plr2Token; }
+std::vector<Card*> MatchManager::getPlr1Deck() const {return this->plr1Deck;}
+std::vector<Card*> MatchManager::getPlr2Deck() const {return this->plr2Deck;}
 void MatchManager::setPlr1Token(int token) {this->plr1Token = token;}
 void MatchManager::setPlr2Token(int token) {this->plr2Token = token;}
 
