@@ -29,7 +29,6 @@ MatchManager::MatchManager(GamePanel* gamePanel, CardManager* cardManager, Chara
     // Link lane buttons to this game
     std::vector<wxButton*> enemyBoard = gamePanel->getBoardButtons1();
     std::vector<wxButton*> yourBoard = gamePanel->getBoardButtons2();
-
     // Link to choosing specific attacks
     for (int i = 0; i < enemyBoard.size(); i++) {
         enemyBoard[i]->Bind(wxEVT_BUTTON, [this, i](wxCommandEvent&) {

@@ -1,7 +1,10 @@
 #include "cards/instant/MeteorShower.h"
 
 MeteorShower::MeteorShower()
-: InstantCard("Meteor Shower", 5) {}
+: InstantCard("Meteor Shower", 5) {
+    // Can use it whenever (even if no enemies)
+    this->setUseAnyBoard(true);
+}
 
 MeteorShower::~MeteorShower() {}
 

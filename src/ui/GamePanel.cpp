@@ -27,6 +27,7 @@ GamePanel::GamePanel(wxWindow* parent)
     curPage = 0;
     plrDeck = {};
     selectedCard = nullptr;
+    StoredMatch = nullptr;
     wxButton* selectedDeckButton = nullptr;
     defaultColour = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
     defaultFG = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT);
@@ -118,8 +119,6 @@ void GamePanel::RotateDeck(int page) {
     }
     // Clear previous buttons
     yourDeck->Clear(true);  // destroys old buttons
-    selectedDeckButton = nullptr;
-
     // Add new cards
     int from = page * CONSTANTS::DECK_VIEW;
     int to = from + CONSTANTS::DECK_VIEW;
@@ -135,31 +134,18 @@ void GamePanel::RotateDeck(int page) {
         );
         Card* curCard = plrDeck[from];
         btn->Bind(wxEVT_BUTTON, [this, btn, curCard](wxCommandEvent&) {
-            if (selectedCard == curCard) { // deselected on reclick
-                selectedDeckButton->SetBackgroundColour(defaultColour);
-                selectedDeckButton = nullptr;
-                selectedCard = nullptr;
-                return;
-            }
-            // Reset previously selected button
-            if (selectedDeckButton) {
-                selectedDeckButton->SetBackgroundColour(defaultColour);
-                selectedDeckButton->Refresh();
-            }
-
-            // Set new selection
-            selectedDeckButton = btn;
-            selectedCard = curCard;
-
-            btn->SetBackgroundColour(*wxBLUE);
-            btn->Refresh();
+            this->tapCard(btn, curCard);
         });
         yourDeck->Add(btn, 1, wxEXPAND);
     }
     // Refresh layout
     yourDeckPanel->Layout();
     curPage = page;
+    // Deselect any holding cards
     selectedCard = nullptr;
+    selectedDeckButton = nullptr; 
+    LightLane(true, *defaultColour, *defaultFG);
+    LightLane(false, *defaultColour, *defaultFG);
 
 }
 
@@ -206,6 +192,96 @@ void GamePanel::UpdateBoard(MainBoard* board) {
         }
     }
 }
+void GamePanel::tapCard(wxButton* btn, Card* card) {
+    // Set selected card to different colour
+    if (selectedCard == card) { // deselected on reclick
+        btn->SetBackgroundColour(*defaultColour);
+        btn->SetForegroundColour(*defaultFG);
+        btn = nullptr;
+        selectedCard = nullptr;
+        // Reset lane colours
+        LightLane(true, *defaultColour, *defaultFG);
+        LightLane(false, *defaultColour, *defaultFG);
+        return;
+    }
+    // Deselect last card
+    if (selectedDeckButton) {
+        // Recalculate ui
+        LightLane(true, *defaultColour, *defaultFG);
+        LightLane(false, *defaultColour, *defaultFG);
+        selectedDeckButton->SetBackgroundColour(*defaultColour);
+        selectedDeckButton->SetForegroundColour(*defaultFG);
+    }
+    // Reset previously selected button
+    if (btn) {
+        btn->SetBackgroundColour(*defaultColour);
+        btn->Refresh();
+    }
+
+    // Set new selection
+    selectedCard = card;
+    selectedDeckButton = btn;
+    // Highlight lanes
+    if (card->getType() == Card::Type::INSTANT) {
+        InstantCard* curCard = dynamic_cast<InstantCard*>(card);
+        if (curCard->getUseEnemyEnt()) LightLane(false, *wxRED, *wxWHITE, 1);
+        if (curCard->getUseSelfEnt()) LightLane(true, *wxGREEN, *wxBLACK, 1);
+        if (curCard->getUseAnyBoard()) LightLane(true, *wxYELLOW, *wxBLACK);
+        if (curCard->getUseAnyBoard()) LightLane(false, *wxYELLOW, *wxBLACK);
+    } else {
+        LightLane(false, *defaultColour, *defaultFG);
+        LightLane(true, *wxGREEN, *wxBLACK, 0);
+    }
+    btn->SetBackgroundColour(*wxBLUE);
+    btn->SetForegroundColour(*wxWHITE);
+    btn->Refresh();
+}
+// Default, light all X lane to colour
+void GamePanel::LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied, int lane) {
+    std::vector<Lane*> allLanes;
+    std::cout << "changing lane, " << allLanes.size() << std::endl;
+    if (StoredMatch) allLanes = StoredMatch->getBoard()->getLanes();
+    std::cout << "csze of lanes, " << allLanes.size() << std::endl;
+
+    if (yourLane) {
+        if (lane == -1) {
+            for (int i = 0; i < yourBoard.size(); i++) {
+                if (occupied == 1) { // must have entity
+                    if (allLanes.empty() || !allLanes[i]->getPlr1Entity())
+                        continue;
+                } else if (occupied == 0) { // must be empty
+                    if (allLanes.empty() || allLanes[i]->getPlr1Entity())
+                        continue;
+                }
+                yourBoard[i]->SetBackgroundColour(bgColour);
+                yourBoard[i]->SetForegroundColour(fgColour);
+            }
+        } else {
+            if (lane < 0 || lane >= yourBoard.size()) return;
+            yourBoard[lane]->SetBackgroundColour(bgColour);
+            yourBoard[lane]->SetForegroundColour(fgColour);
+        }
+    } else {
+        if (lane == -1) {
+            for (int i = 0; i < enemyBoard.size(); i++) {
+                if (occupied == 1) { // must have entity
+                    if (allLanes.empty() || !allLanes[i]->getPlr2Entity())
+                        continue;
+                } else if (occupied == 0) { // must be empty
+                    if (allLanes.empty() || allLanes[i]->getPlr2Entity())
+                        continue;
+                }
+                enemyBoard[i]->SetBackgroundColour(bgColour);
+                enemyBoard[i]->SetForegroundColour(fgColour);
+            } 
+        } else {
+            if (lane < 0 || lane >= enemyBoard.size()) return;
+            enemyBoard[lane]->SetBackgroundColour(bgColour);
+            enemyBoard[lane]->SetForegroundColour(fgColour);
+        }
+    }
+    std::cout << "FINISHED" << std::endl;
+}
 
 void GamePanel::UpdateHeaderText(std::string s) {
     headerMessage->SetLabel(s);
@@ -224,5 +300,11 @@ std::vector<wxButton*> GamePanel::getBoardButtons2() const {
 }
 Card* GamePanel::getSelectedCard() const {
     return this->selectedCard;
+}
+MatchManager* GamePanel::getMatchManager() const {
+    return this->StoredMatch;
+}
+void GamePanel::setMatchManager(MatchManager* manager) {
+    this->StoredMatch = manager;
 }
 GamePanel::~GamePanel() {}

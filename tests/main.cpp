@@ -25,11 +25,17 @@ bool mainApp::OnInit() {
 
     // Initialize UI
     MainWindow* gameFrame = new MainWindow();
+    std::cout << "UI INITIALIZED! " << std::endl;
 
     // Initialize a Match manager
     Mage* mage = new Mage(50, 10);
     Tank* tank = new Tank(100, 30);
     MatchManager* MM = new MatchManager(gameFrame->getGamePanel(), cardManager, mage, tank, CONSTANTS::NUM_LANES);
+    std::cout << "MATCH INITIALIZED! " << std::endl;
+
+    // Link the gamepanel to our current game (Match Manager)
+    gameFrame->getGamePanel()->setMatchManager(MM);
+    std::cout << "LINK GAME TO PANEL!" << std::endl;
 
     // Show frame
     gameFrame->Show(true);

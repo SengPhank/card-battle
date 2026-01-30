@@ -75,6 +75,7 @@ private:
     wxColour defaultFG;
 
     // Storage
+    MatchManager* StoredMatch;
     std::vector<Card*> plrDeck; // the last stored player deck
     int curPage;
     Card* selectedCard;
@@ -90,11 +91,16 @@ public:
     void UpdatePlayerStats(int newHP, int newPlayerTokens, int newRage);
     void UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize, int enemyRage);
     void UpdateBoard(MainBoard* board);
-    
+    // Occupied: 0 Not occupied, 1 = Has to be occupied, -1 = doesnt matter. 
+    void LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied = -1, int lane = -1);
+    void tapCard(wxButton* btn, Card* card);
+
     // Encap
     wxButton* getEndTurnButton();
     std::vector<wxButton*> getBoardButtons1() const;
     std::vector<wxButton*> getBoardButtons2() const;
+    MatchManager* getMatchManager() const;
+    void setMatchManager(MatchManager* manager);
     Card* getSelectedCard() const;
 
 };
