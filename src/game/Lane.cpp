@@ -13,7 +13,6 @@ Lane::Lane(MatchManager* gm, int laneNumber) : GM(gm), lane_number(laneNumber) {
 }
 
 bool Lane::placeCard(int player, EntityCard* card) {
-    std::cout << "plr " << player << " playing card" << std::endl;
     // Verify player and entity
     if (player == 1) {
         if (plr1_entity) return false;

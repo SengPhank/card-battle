@@ -34,8 +34,8 @@ Lane* BasicBot::chooseDefensiveLane() {
     std::vector<Lane*> allLanes = matchManager->getBoard()->getLanes();
     std::vector<Lane*> validLanes;
     for (Lane* i : allLanes) {
-        Card* ent1 = i->getPlr1Entity();
-        Card* ent2 = i->getPlr2Entity();
+        EntityCard* ent1 = i->getPlr1Entity();
+        EntityCard* ent2 = i->getPlr2Entity();
         if (ent1 != nullptr && ent2 == nullptr) validLanes.push_back(i);
     }
     if (validLanes.empty()) return nullptr;

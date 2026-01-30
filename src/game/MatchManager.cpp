@@ -43,7 +43,7 @@ MatchManager::MatchManager(GamePanel* gamePanel, CardManager* cardManager, Chara
     }
 
     // OPTIONAL, INIT A BOT TO PLAY
-    // this->botPlayer = new BasicBot(2, this, board);
+    this->botPlayer = new BasicBot(2, this, board);
 
     // Draw starting cards
     for (int i = 0; i < CONSTANTS::START_DECK; i++) {
@@ -77,11 +77,11 @@ bool MatchManager::requestPlay(int plr, int lane, Card* card) {
 
     // Check type of card requesting to be played
     if (card->getType() == Card::Type::ENTITY) {
-        std::cout << "PLAYING ENTITY " << std::endl;
+        // std::cout << "PLAYING ENTITY " << std::endl;
         EntityCard* eCard = dynamic_cast<EntityCard*>(card);
         if (!eCard || !board->playCard(plr, lane, eCard)) return false;
     } else if (card->getType() == Card::Type::INSTANT) {
-        std::cout << "PLAYING INSTANT " << std::endl;
+        // std::cout << "PLAYING INSTANT " << std::endl;
     } else {
         // Unknown card type
         return false; 
@@ -133,7 +133,13 @@ bool MatchManager::drawCard(int plr) {
     // CARD CAP
     std::vector<Card*>& plrDeck = (plr == 1) ? plr1Deck : plr2Deck;
     if (plrDeck.size() >= CONSTANTS::MAX_DECK_SIZE) return false; 
-    Card* randomCard = cardManager->chooseRandomCard()->clone();
+    Card* randomCard;
+    // BASIC BOT DOES NOT DRAW INSTANT CARDS
+    if (botPlayer && plr == 2) {
+        randomCard = cardManager->chooseRandomEntity()->clone();
+    } else {
+        randomCard = cardManager->chooseRandomCard()->clone();
+    }
     randomCard->setOwner(plr); // Provide ownership
     plrDeck.push_back(randomCard);
     // update plrs card
@@ -146,7 +152,7 @@ bool MatchManager::drawCard(int plr) {
 }
 
 void MatchManager::endTurn() {
-    std::cout << "Turn ended" << std::endl;
+    std::cout << "Turn ended. Current round: " << turn << std::endl;
     if (awaiting == 1) {
         gamePanel->UpdateHeaderText("Plr2's Turn");
         awaiting = 2;
@@ -188,7 +194,7 @@ MainBoard* MatchManager::getBoard() const { return this->board; }
 int MatchManager::getPlr1Token() const { return this->plr1Token; }
 int MatchManager::getPlr2Token() const { return this->plr2Token; }
 void MatchManager::setPlr1Token(int token) {this->plr1Token = token;}
-void MatchManager::setPlr2Token(int token) {this->plr1Token = token;}
+void MatchManager::setPlr2Token(int token) {this->plr2Token = token;}
 
 MatchManager::~MatchManager() {
     delete plr1;

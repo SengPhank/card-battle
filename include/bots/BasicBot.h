@@ -5,6 +5,7 @@ This bot's strategy is:
 - Always play the most expensive card when available
 - Always block an available opposing card
 - Always use their rage ability, and target a random opponent with it (if offense)
+- DOES NOT PLAY INSTANT CARDS (therefore can not draw them)
 */
 #pragma once
 #include "game/MatchManager.h"
