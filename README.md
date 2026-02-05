@@ -23,7 +23,7 @@ sudo apt install libgtk-3-dev # Installs CMake pkg for GUIs
 
 ## wxWidget System-wide installation (OPTIONAL)
 1. Installs wxWidget on your system. Recommended if you plan to modify and repeatedly build this project!
-wxWidget Installation: [wxWidgets Installation Guide](https://github.com/SengPhank/card-battle/blob/main/docs/wxWidgetsInstallation.md)
+- wxWidget Installation: [wxWidgets Installation Guide](https://github.com/SengPhank/card-battle/blob/main/docs/wxWidgetsInstallation.md)
 
 ## Building the project
 ### If you installed wxWidget System wide:
@@ -34,7 +34,7 @@ cd card-battle
 ```
 2. Build and run with Makefile
 ```bash
-make devv
+make dev
 ```
 ### If you did not install wxWidget:
 1. Ensure you clone the repo and the wxWidget module using
