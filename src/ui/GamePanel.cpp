@@ -51,6 +51,7 @@ GamePanel::GamePanel(wxWindow* parent)
     enemyRage = topInf.rageText;
     enemyHealth = topInf.healthText;
     enemyTokens = topInf.tokensText;
+    enemyCharacter = topInf.characterBtn;
 
     // Unpack boardInfo (into a sizer)
     wxBoxSizer* boardsSizer = new wxBoxSizer(wxVERTICAL);
@@ -61,6 +62,7 @@ GamePanel::GamePanel(wxWindow* parent)
     
     // Unpack bottomPanel
     yourCards = bottomInf.cardsRemaining;
+    yourCharacter = bottomInf.characterBtn;
     yourRage = bottomInf.rageBtn;
     yourHealth = bottomInf.healthText;
     yourTokens = bottomInf.tokensText;
@@ -141,13 +143,15 @@ void GamePanel::RotateDeck(int page) {
     selectedDeckButton = nullptr; 
     LightLane(true, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
     LightLane(false, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
+    LightCharacter(true, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
+    LightCharacter(false, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
 
 }
 
 void GamePanel::UpdatePlayerStats(int newHP, int newPlayerTokens, int newRage) {
     // Update the player's health and tokens
     yourHealth->SetLabel("Health: " + std::to_string(newHP));
-    yourTokens->SetLabel("Tokens: " + std::to_string(newPlayerTokens));
+    yourTokens->SetLabel("Your Tokens: " + std::to_string(newPlayerTokens));
     yourRage->SetLabel("Rage: " + std::to_string(newRage) + "%");
     if (newRage == 100) {
         yourRage->SetBackgroundColour(*colourManager.query("green"));
@@ -163,7 +167,7 @@ void GamePanel::UpdatePlayerStats(int newHP, int newPlayerTokens, int newRage) {
 void GamePanel::UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize, int enemyRage) {
     // Update the enemy's health, tokens, and deck size
     enemyHealth->SetLabel("Health: " + std::to_string(newHP));
-    enemyTokens->SetLabel("Tokens: " + std::to_string(newEnemyTokens));
+    enemyTokens->SetLabel("Enemy Tokens: " + std::to_string(newEnemyTokens));
     enemyCards->SetLabel("Cards: " + std::to_string(enemyDeckSize));
     this->enemyRage->SetLabel("Rage: " + std::to_string(enemyRage) + "%");
 }
@@ -190,6 +194,9 @@ void GamePanel::UpdateBoard(MainBoard* board) {
 void GamePanel::tapCard(CardWidget* widget, Card* card) {
     LightLane(true, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
     LightLane(false, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
+    LightCharacter(true, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
+    LightCharacter(false, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
+
     // Deselect if clicking same card
     if (selectedCard == card) {
         // std::cout << "deselected card: " << card->getName() << std::endl;
@@ -210,21 +217,40 @@ void GamePanel::tapCard(CardWidget* widget, Card* card) {
 
     widget->setSelected(true);
     
-    // Highlight lanes
+    // If too broke, dont highlight
+    if (StoredMatch->getPlr1Token() < card->getCost()) return;
+    
+    // Highlight lanes that are interactable
     if (card->getType() == Card::Type::INSTANT) {
         InstantCard* curCard = dynamic_cast<InstantCard*>(card);
         std::cout << "selected an instant card" << std::endl;
-        if (curCard->getUseEnemyEnt()) { // card usable on enemy
-            LightLane(false, *colourManager.query("red"), *colourManager.query("white"), 1);
+        if (curCard->getUseEnemyEnt()) { // card usable on enemy entity
+            if (curCard->getDamagedOnly()) {
+                LightLane(false, *colourManager.query("red"), *colourManager.query("white"), 1, -1, true);
+            } else {
+                LightLane(false, *colourManager.query("red"), *colourManager.query("white"), 1);
+            }
         }
             
         if (curCard->getUseSelfEnt()) { // card usable on self entity
-            LightLane(true, *colourManager.query("yellow"), *colourManager.query("black"), 1);
+            if (curCard->getDamagedOnly()) {
+                LightLane(true, *colourManager.query("yellow"), *colourManager.query("black"), 1, -1, true);
+            } else {
+                LightLane(true, *colourManager.query("yellow"), *colourManager.query("black"), 1);
+            }
         }
 
         if (curCard->getUseAnyBoard()) { // card used anywhere
             LightLane(true, *colourManager.query("purple"), *colourManager.query("white"));
             LightLane(false, *colourManager.query("purple"), *colourManager.query("white"));
+        }
+
+        // Can be played on characters?
+        if (curCard->getUseEnemyChar()) {
+            LightCharacter(false, *colourManager.query("red"), *colourManager.query("white"));
+        }
+        if (curCard->getUseSelfChar()) {
+            LightCharacter(true, *colourManager.query("green"), *colourManager.query("white"), 0);
         }
     }
     else { // Only highlight placeable entity
@@ -233,18 +259,25 @@ void GamePanel::tapCard(CardWidget* widget, Card* card) {
 }
 
 // Default, light all X lane to colour
-void GamePanel::LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied, int lane) {
+void GamePanel::LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied, int lane, bool damagedOnly) {
     std::vector<Lane*> allLanes;
     if (StoredMatch) allLanes = StoredMatch->getBoard()->getLanes();
 
     if (yourLane) {
         if (lane == -1) {
             for (int i = 0; i < yourBoard.size(); i++) {
+                // Check Occupied Constraints
                 if (occupied == 1) { // must have entity
                     if (allLanes.empty() || !allLanes[i]->getPlr1Entity())
                         continue;
                 } else if (occupied == 0) { // must be empty
                     if (allLanes.empty() || allLanes[i]->getPlr1Entity())
+                        continue;
+                }
+                // Check damage Constraint
+                if (damagedOnly) {
+                    if (allLanes.empty() || allLanes[i]->getPlr1Entity()->getHealth() 
+                    >= allLanes[i]->getPlr1Entity()->getDFHEALTH())
                         continue;
                 }
                 yourBoard[i]->SetBackgroundColour(bgColour);
@@ -258,11 +291,18 @@ void GamePanel::LightLane(bool yourLane, const wxColor& bgColour, const wxColor&
     } else {
         if (lane == -1) {
             for (int i = 0; i < enemyBoard.size(); i++) {
+                // Check Occupied Constraints
                 if (occupied == 1) { // must have entity
                     if (allLanes.empty() || !allLanes[i]->getPlr2Entity())
                         continue;
                 } else if (occupied == 0) { // must be empty
                     if (allLanes.empty() || allLanes[i]->getPlr2Entity())
+                        continue;
+                }
+                // Check damage Constraint
+                if (damagedOnly) {
+                    if (allLanes.empty() || allLanes[i]->getPlr2Entity()->getHealth() 
+                    >= allLanes[i]->getPlr2Entity()->getDFHEALTH())
                         continue;
                 }
                 enemyBoard[i]->SetBackgroundColour(bgColour);
@@ -275,28 +315,38 @@ void GamePanel::LightLane(bool yourLane, const wxColor& bgColour, const wxColor&
         }
     }
 }
-
-void GamePanel::UpdateHeaderText(std::string s) {
-    headerMessage->SetLabel(s);
+void GamePanel::LightCharacter(bool yourChar, const wxColor& bgColour, const wxColor& fgColour, int fullHP) {
+    if (!StoredMatch) return;
+    if (yourChar) {
+        int cHealth = StoredMatch->getPlr1Char()->getHealth();
+        int dHealth = StoredMatch->getPlr1Char()->getDFHEALTH();
+        if (fullHP == 1 && cHealth != dHealth) return;
+        if (fullHP == 0 && cHealth >= dHealth) return;
+        yourCharacter->SetBackgroundColour(bgColour);
+        yourCharacter->SetForegroundColour(fgColour);
+    } else {
+        int cHealth = StoredMatch->getPlr2Char()->getHealth();
+        int dHealth = StoredMatch->getPlr2Char()->getDFHEALTH();
+        if (fullHP == 1 && cHealth != dHealth) return;
+        if (fullHP == 0 && cHealth >= dHealth) return;
+        enemyCharacter->SetBackgroundColour(bgColour);
+        enemyCharacter->SetForegroundColour(fgColour);
+    }
 }
 
+void GamePanel::UpdateHeaderText(std::string s) {this->headerMessage->SetLabel(s);}
 // Encap
 wxButton* GamePanel::getEndTurnButton() const {return this->endTurnBtn;}
 wxButton* GamePanel::getYourRageButton() const {return this->yourRage;}
 wxButton* GamePanel::getHelpPageButton() const {return nullptr;} // TBA
-std::vector<wxButton*> GamePanel::getBoardButtons1() const {
-    return this->enemyBoard;
-}
-std::vector<wxButton*> GamePanel::getBoardButtons2() const {
-    return this->yourBoard;
-}
-Card* GamePanel::getSelectedCard() const {
-    return this->selectedCard;
-}
-MatchManager* GamePanel::getMatchManager() const {
-    return this->StoredMatch;
-}
-void GamePanel::setMatchManager(MatchManager* manager) {
-    this->StoredMatch = manager;
-}
+wxButton* GamePanel::getYourCharButton() const {return this->yourCharacter;}
+wxButton* GamePanel::getEnemyCharButton() const {return this->enemyCharacter;}
+std::vector<wxButton*> GamePanel::getBoardButtons1() const {return this->enemyBoard;}
+std::vector<wxButton*> GamePanel::getBoardButtons2() const {return this->yourBoard;}
+Card* GamePanel::getSelectedCard() const {return this->selectedCard;}
+MatchManager* GamePanel::getMatchManager() const {return this->StoredMatch;}
+void GamePanel::setMatchManager(MatchManager* manager) {this->StoredMatch = manager;}
+void GamePanel::setYourCharacter(std::string s) {this->yourCharacter->SetLabel(s);};
+void GamePanel::setEnemyCharacter(std::string s) {this->enemyCharacter->SetLabel(s);};
+
 GamePanel::~GamePanel() {}

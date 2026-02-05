@@ -1,10 +1,10 @@
 #pragma once
 #include "cards/InstantCard.h"
 
-class MeteorShower : public InstantCard {
+class SoulSteal : public InstantCard {
 public:
-    MeteorShower();
-    ~MeteorShower();
+    SoulSteal();
+    ~SoulSteal();
     std::string getDescription() const override;
     Card* clone() const override;
     

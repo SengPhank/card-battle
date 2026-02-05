@@ -8,6 +8,6 @@ public:
     std::string getDescription() const override;
     Card* clone() const override;
     
-    bool onPlayed(MatchManager* manager, int lane);
+    bool onPlayed(MatchManager* manager, int lane, int plr);
 };
 

@@ -15,7 +15,8 @@ public:
     ~Tank();
     Character* clone() const override;
     void takeDamage(int atk) override;
-    bool activateRage(MatchManager* manager) override;
+    bool activateRage(MatchManager* manager, int turn) override;
     // Encap
     int getProtectionTime() const;
+    void setProtectionTime(int t);
 };

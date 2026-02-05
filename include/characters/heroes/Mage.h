@@ -11,5 +11,5 @@ public:
     Mage();
     ~Mage();
     Character* clone() const override;
-    bool activateRage(MatchManager* manager) override;
+    bool activateRage(MatchManager* manager, int turn) override;
 };

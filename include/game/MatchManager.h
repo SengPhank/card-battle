@@ -36,15 +36,22 @@ private:
     
     // Private
     bool verifyCardIntegrity(const std::vector<Card*>& deck, Card* card);
+    bool removeCardFromPlr(std::vector<Card*>& plrDeck, Card* card);
+
 public:
     MatchManager(GamePanel* gamePanel, CardManager* cardManager, Character* p1, Character* p2, int numLanes);
 
     // Player interaction
     bool requestPlay(int plr, int lane, Card* card);
+    bool requestPlayEnemyBoard(int plr, int lane, InstantCard* card);
+    bool requestPlaySelfChar(int plr, InstantCard* card);
+    bool requestPlayEnemyChar(int plr, InstantCard* card);
 
     // Match interaction
     void damagePlr1(int atk);
     void damagePlr2(int atk);
+    void healPlr1(int heal);
+    void healPlr2(int heal);
     bool drawCard(int plr);
     void endTurn();
     
@@ -57,6 +64,8 @@ public:
     int getAwaiting() const;
     int getPlr1Token() const;
     int getPlr2Token() const;
+    Character* getPlr1Char() const;
+    Character* getPlr2Char() const;
     std::vector<Card*> getPlr1Deck() const;
     std::vector<Card*> getPlr2Deck() const;
     void setPlr1Token(int token);

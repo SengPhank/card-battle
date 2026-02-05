@@ -10,12 +10,14 @@ protected:
     bool useSelfChar;
     bool useSelfEnt;
     bool useAnyBoard;
+    bool damagedOnly; // can only use on X if X is damaged
 
     void setUseEnemyChar(bool t);
     void setUseEnemyEnt(bool t);
     void setUseSelfChar(bool t);
     void setUseSelfEnt(bool t);
     void setUseAnyBoard(bool t);
+    void setDamagedOnly(bool t);
 public:
     InstantCard(std::string name, int cost);
     virtual ~InstantCard() = default;
@@ -27,6 +29,7 @@ public:
     bool getUseSelfChar() const;
     bool getUseSelfEnt() const;
     bool getUseAnyBoard() const;
+    bool getDamagedOnly() const;
     
     // Functionality
     Card* clone() const override;
@@ -34,6 +37,6 @@ public:
     std::string displayCard() override;
 
     // On play effects (returns true for successful, false if not)
-    bool onPlayed(MatchManager* manager, int lane) override;
+    bool onPlayed(MatchManager* manager, int lane, int plr = -1) override;
     
 };

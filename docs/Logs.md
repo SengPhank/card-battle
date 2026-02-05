@@ -5,7 +5,14 @@
 - Add more cards with unique abilities
 - Add more Heroes
 - Create a more sophisticated bot (Tricky bots, Cowardly bots, Aggressive bots)
-- (Bug) heal still shows when unhealable
+- Each card should have their own unique check to see if its playable. Pass in the game panel to highlight necessary. This is stepping back from modularisation, but looks a lot more intuitive
+
+## Feb 05
+Added more cards, made characters interactable so Instants have more targets
+- More Cards: (Instant) Soul Stealer, (Instant) Fireball
+- Characters are now interactable (With instants)
+- Colour manager added
+
 ## Jan 30
 Cleaned up the UI and added emojis to make it less text-crowded. 
 - UI now has colour feedback, telling you where you are able to use your cards

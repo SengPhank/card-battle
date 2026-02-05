@@ -32,5 +32,5 @@ public:
     // Call for easy cloning
     virtual Card* clone() const = 0;
     // Is used on both Instants and Entities (sometimes)
-    virtual bool onPlayed(MatchManager* manager, int lane);
+    virtual bool onPlayed(MatchManager* manager, int lane, int plr = -1);
 };

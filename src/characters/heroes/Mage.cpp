@@ -8,7 +8,8 @@ Character* Mage::clone() const {
     return new Mage(*this);
 }
 
-bool Mage::activateRage(MatchManager* manager) {
+bool Mage::activateRage(MatchManager* manager, int turn) {
+    
     if (rage < 100)
         return false;
     std::cout << "ACTIVIATING MAGE ABILITY" << std::endl;
@@ -24,6 +25,7 @@ bool Mage::activateRage(MatchManager* manager) {
         ent->setHealth(std::min(ent->getHealth()+heal, ent->getDFHEALTH()));
     }
     rage = 0;
-
+    
+    this->setLastRageActive(turn);
     return true;
 }

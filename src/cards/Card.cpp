@@ -24,4 +24,4 @@ void Card::setOwner(int owner) {
     this->owner = owner;
 }
 // Default does nothing
-bool Card::onPlayed(MatchManager* manager, int lane) {return false;}
+bool Card::onPlayed(MatchManager* manager, int lane, int plr) {return false;}

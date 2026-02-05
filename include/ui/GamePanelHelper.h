@@ -14,6 +14,7 @@ struct DataTopUI {
     wxStaticText* rageText;
     wxStaticText* healthText;
     wxStaticText* tokensText;
+    wxButton* characterBtn;
 };
 
 struct DataBoardUI {
@@ -23,6 +24,7 @@ struct DataBoardUI {
 struct DataBottomUI {
     wxPanel* panel;
     wxStaticText* cardsRemaining;
+    wxButton* characterBtn;
     wxStaticText* tokensText;
     wxStaticText* healthText;
     wxButton* rageBtn;

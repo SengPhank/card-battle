@@ -53,11 +53,13 @@ private:
     wxStaticText* enemyRage;
     wxStaticText* enemyHealth;
     wxStaticText* enemyTokens;
+    wxButton* enemyCharacter;
 
     // Your UI components
     wxStaticText* yourCards;
-    wxStaticText* yourHealth;
+    wxButton* yourCharacter;
     wxStaticText* yourTokens;
+    wxStaticText* yourHealth;
     wxButton* yourRage;
     wxPanel* yourDeckPanel;
     wxGridSizer* yourDeck;
@@ -93,17 +95,22 @@ public:
     void UpdateEnemyStats(int newHP, int newEnemyTokens, int enemyDeckSize, int enemyRage);
     void UpdateBoard(MainBoard* board);
     // Occupied: 0 Not occupied, 1 = Has to be occupied, -1 = doesnt matter. 
-    void LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied = -1, int lane = -1);
+    void LightLane(bool yourLane, const wxColor& bgColour, const wxColor& fgColour, int occupied=-1, int lane=-1, bool damagedOnly=false);
+    void LightCharacter(bool yourChar, const wxColor& bgColour, const wxColor& fgColour, int fullHP=-1);
     void tapCard(CardWidget* widget, Card* card);
 
     // Encap
     wxButton* getEndTurnButton() const;
     wxButton* getYourRageButton() const;
     wxButton* getHelpPageButton() const;
+    wxButton* getYourCharButton() const;
+    wxButton* getEnemyCharButton() const;
     std::vector<wxButton*> getBoardButtons1() const;
     std::vector<wxButton*> getBoardButtons2() const;
     MatchManager* getMatchManager() const;
     void setMatchManager(MatchManager* manager);
+    void setYourCharacter(std::string s);
+    void setEnemyCharacter(std::string s);
     Card* getSelectedCard() const;
 
 };

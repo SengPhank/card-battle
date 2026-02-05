@@ -26,7 +26,11 @@ int Character::getDFHEALTH() const {return this->DEFAULT_HEALTH;}
 int Character::getDFRAGE() const {return this->DEFAULT_RAGE;}
 int Character::getHealth() const { return this->health;}
 int Character::getRage() const {return this->rage;}
+int Character::getLastRageActive() const {return this->lastRageActive;}
+int Character::getCurrentRound() const {return this->currentRound;}
 void Character::setRage(int rage) {this->rage=rage;}
 void Character::setHealth(int health) {this->health=health;}
+void Character::setLastRageActive(int t) {this->lastRageActive = t;}
+void Character::setCurrentRound(int t) {this->currentRound = t;}
 std::string Character::getName() const {return this->name;}
 

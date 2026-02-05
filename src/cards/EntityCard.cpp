@@ -8,7 +8,7 @@ EntityCard::EntityCard(std::string name, int cost, int health, int attack, std::
 }
 
 std::string EntityCard::displayCard() {
-    std::string s = std::format("ENTITY\n{}\n✊ {} | ❤️ {}\n💵 {}",
+    std::string s = std::format("{}\n✊{} | ❤️ {}",
         name, attack, health, cost
     );
     return s;
@@ -36,7 +36,7 @@ Card::Type EntityCard::getType() const {
 }
 
 // Default do nothing
-bool EntityCard::onPlayed(MatchManager* manager, int lane) { return false; }
+bool EntityCard::onPlayed(MatchManager* manager, int lane, int plr) { return false; }
 
 std::string EntityCard::getDescription() const {
     return "INSERT_ENTITY_CARD_DESCRIPTION_HERE";

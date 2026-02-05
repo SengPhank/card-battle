@@ -31,7 +31,7 @@ public:
     virtual std::string getDescription() const;
 
     // Behaviours/Hooks
-    bool onPlayed(MatchManager* manager, int lane) override; // REQUIRED, everything does nothing by default
+    bool onPlayed(MatchManager* manager, int lane, int plr = -1) override; // REQUIRED, everything does nothing by default
     virtual void onNewRound(MatchManager* manager);
     virtual void onCardDraw(MatchManager* manager);
     virtual void onRage(MatchManager* manager);

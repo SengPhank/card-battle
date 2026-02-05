@@ -1,6 +1,7 @@
 #include "cards/entity/Troll.h"
 
-Troll::Troll() : EntityCard("Troll 🧌", 1, 10, 1) {}
+// Name, Cost, Health, Atk
+Troll::Troll() : EntityCard("Troll 🧌", 1, 2, 1) {}
 Troll::~Troll() {}
 
 Card* Troll::clone() const {

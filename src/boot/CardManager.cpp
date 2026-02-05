@@ -7,6 +7,8 @@
 // Instants
 #include "cards/instant/Heal.h"
 #include "cards/instant/MeteorShower.h"
+#include "cards/instant/Fireball.h"
+#include "cards/instant/SoulSteal.h"
 
 #include <cstdlib>
 #include <ctime>
@@ -19,6 +21,8 @@ CardManager::CardManager() {
     // Instants 
     instantStore.push_back(new Heal());
     instantStore.push_back(new MeteorShower());
+    instantStore.push_back(new Fireball());
+    instantStore.push_back(new SoulSteal());
 
     // Build combined list
     for (auto c : entityStore)

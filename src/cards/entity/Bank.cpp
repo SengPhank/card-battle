@@ -1,6 +1,7 @@
 #include "cards/entity/Bank.h"
 #include "game/MatchManager.h"
 
+// Name, Cost, Health, Atk
 Bank::Bank() 
 : EntityCard("Bank 🏦", 3, 2, 1) {}
 Bank::~Bank() {}

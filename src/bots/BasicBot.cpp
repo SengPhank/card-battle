@@ -49,7 +49,7 @@ void BasicBot::takeTurn(const std::vector<Card*>& deck, int availableTokens) {
     int oppo = (playerId == 1) ? 2 : 1;
     // It'll initially want to play its rage ability first
     while (character->getRage() == 100) {
-        character->activateRage(matchManager);
+        character->activateRage(matchManager, matchManager->getTurn());
     }
     // Then play some cards        
     Card* cardPlay = chooseMostExpensiveCard(deck, availableTokens);

@@ -30,29 +30,38 @@ DataTopUI GamePanelHelper::createTop(wxPanel* parent) {
     DataTopUI ui{};
 
     ui.panel = new wxPanel(parent);
-    wxBoxSizer* enemySizer = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* mainSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    // ---- Left (Card / Rage)
+    // Left (Card / Rage)
     wxBoxSizer* leftSizer = new wxBoxSizer(wxVERTICAL);
     ui.cardsRemaining = new wxStaticText(ui.panel, wxID_ANY, "Card: X");
-    ui.rageText  = new wxStaticText(ui.panel, wxID_ANY, "Rage: Y");
+    ui.rageText       = new wxStaticText(ui.panel, wxID_ANY, "Rage: Y");
+
     leftSizer->Add(ui.cardsRemaining, 0, wxBOTTOM, 4);
     leftSizer->Add(ui.rageText, 0);
 
-    // ---- Middle (Health)
-    ui.healthText = new wxStaticText(ui.panel, wxID_ANY, "HEALTH: XXX");
-    ui.healthText->SetFont(
+    // Middle (Character Button)
+    ui.characterBtn = new wxButton(ui.panel, wxID_ANY, "Enemy", wxDefaultPosition, wxSize(150, 100));
+    ui.characterBtn->SetFont(
         wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD)
     );
 
-    // ---- Right (Tokens)
-    ui.tokensText = new wxStaticText(ui.panel, wxID_ANY, "Tokens: XX");
+    // Right (Health / Tokens)
+    wxBoxSizer* rightSizer = new wxBoxSizer(wxVERTICAL);
+    ui.healthText = new wxStaticText(ui.panel, wxID_ANY, "Health: XXX");
+    ui.tokensText = new wxStaticText(ui.panel, wxID_ANY, "Enemy Tokens: XX");
 
-    enemySizer->Add(leftSizer, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, 10);
-    enemySizer->Add(ui.healthText, 1, wxALIGN_CENTER);
-    enemySizer->Add(ui.tokensText, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 10);
+    rightSizer->Add(ui.healthText, 0, wxBOTTOM, 4);
+    rightSizer->Add(ui.tokensText, 0);
 
-    ui.panel->SetSizer(enemySizer);
+    // Add to main sizer
+    mainSizer->Add(leftSizer, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 10);    
+    mainSizer->AddStretchSpacer(1);                                         
+    mainSizer->Add(ui.characterBtn, 0, wxALIGN_CENTER_VERTICAL);           
+    mainSizer->AddStretchSpacer(1);                                         
+    mainSizer->Add(rightSizer, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT, 10); 
+
+    ui.panel->SetSizer(mainSizer);
     return ui;
 }
 
@@ -123,13 +132,15 @@ DataBottomUI GamePanelHelper::createBottom(wxPanel* parent) {
 
     // Your Stats panel
     wxBoxSizer* statsSizer = new wxBoxSizer(wxVERTICAL);
+    ui.characterBtn = new wxButton(ui.panel, wxID_ANY, "Player Name", wxDefaultPosition, wxSize(100, 50));
+    ui.rageBtn = new wxButton(ui.panel, wxID_ANY, "Rage: YY", wxDefaultPosition, wxSize(100, 50));
     ui.healthText = new wxStaticText(ui.panel, wxID_ANY, "Health: XX");
-    ui.tokensText = new wxStaticText(ui.panel, wxID_ANY, "Tokens: XX");
-    ui.rageBtn = new wxButton(ui.panel, wxID_ANY, "Rage: Y", wxDefaultPosition, wxSize(100, 50));
-
+    ui.tokensText = new wxStaticText(ui.panel, wxID_ANY, "Your Tokens: XX");
+    
+    statsSizer->Add(ui.characterBtn, 0, wxBOTTOM, 4);
+    statsSizer->Add(ui.rageBtn, 0, wxBOTTOM, 4);
     statsSizer->Add(ui.healthText, 0, wxBOTTOM, 4);
-    statsSizer->Add(ui.tokensText, 0, wxBOTTOM, 4);
-    statsSizer->Add(ui.rageBtn, 0);
+    statsSizer->Add(ui.tokensText, 4);
 
     // End Turn button
     ui.endTurnBtn = new wxButton(ui.panel, wxID_ANY, "End Turn", wxDefaultPosition, wxSize(100, 50));

@@ -12,6 +12,10 @@ protected:
     int health;
     int rage;
     std::string name;
+
+    // some local variables about the game
+    int lastRageActive;
+    int currentRound;
 public:
     Character(int health, int rage, std::string name);
     virtual ~Character() = default;
@@ -20,14 +24,19 @@ public:
     // Helper
     int rageCalculation(int damageTaken);
     virtual void takeDamage(int atk);
-    virtual bool activateRage(MatchManager* manager) = 0;  
+    virtual bool activateRage(MatchManager* manager, int turn) = 0;  
 
     // Encapsulation
     int getDFHEALTH() const;
     int getDFRAGE() const;
     int getHealth() const;
     int getRage() const;
+    int getLastRageActive() const;
+    int getCurrentRound() const;
     void setRage(int rage);
     void setHealth(int health);
+    void setLastRageActive(int t);
+    void setCurrentRound(int t);
+
     std::string getName() const;
 };
