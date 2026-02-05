@@ -8,8 +8,8 @@ EntityCard::EntityCard(std::string name, int cost, int health, int attack, std::
 }
 
 std::string EntityCard::displayCard() {
-    std::string s = std::format("ENTITY\n{}\n❤️ {} | ✊ {}\n💵 {}",
-        name, health, attack, cost
+    std::string s = std::format("ENTITY\n{}\n✊ {} | ❤️ {}\n💵 {}",
+        name, attack, health, cost
     );
     return s;
 }

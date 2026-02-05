@@ -24,8 +24,8 @@ public:
     int getOwner() const;
     void setOwner(int owner);
     virtual Type getType() const = 0;
-    virtual std::string getDescription() const = 0;  // More accurate new window description
-    virtual std::string displayCard() = 0;           // String readability placement
+    virtual std::string getDescription() const = 0;  // Short blurb of what the card does
+    virtual std::string displayCard() = 0; // board stats
     
     
     

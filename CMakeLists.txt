@@ -30,6 +30,7 @@ add_library(card_battle_lib
     src/ui/MainMenuPanel.cpp
     src/ui/SettingsPanel.cpp
     src/ui/CardWidget.cpp
+    src/ui/wxCustomColours.cpp
     # Game Data
     src/game/MatchManager.cpp
     src/game/Lane.cpp

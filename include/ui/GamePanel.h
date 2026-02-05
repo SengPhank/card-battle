@@ -37,6 +37,7 @@ struct DataBottomUI {
 #include "game/MainBoard.h"
 #include "ui/GamePanelHelper.h"
 #include "ui/CardWidget.h"
+#include "ui/wxCustomColours.h"
 #include <wx/wx.h>
 #include <wx/grid.h>
 #include <vector>
@@ -72,11 +73,10 @@ private:
     wxButton* settingsBtn;
     wxStaticText* headerMessage;
     CardWidget* selectedDeckButton;
-    wxColour defaultColour;
-    wxColour defaultFG;
 
-    // Storage
+    // Storage/Managers
     MatchManager* StoredMatch;
+    wxCustomColours colourManager;
     std::vector<Card*> plrDeck; // the last stored player deck
     int curPage;
     Card* selectedCard;

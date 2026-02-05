@@ -13,10 +13,7 @@ Card* Heal::clone() const {
 }
 
 std::string Heal::getDescription() const {
-    std::string s = std::format("--{}--\nCost: ${}\nHeals a card for +5 Health",
-        name, cost
-    );
-    return s;
+    return "Heals a card for +5 Health";
 }
 
 bool Heal::onPlayed(MatchManager* manager, int lane) {
@@ -32,6 +29,6 @@ bool Heal::onPlayed(MatchManager* manager, int lane) {
         cur = allLanes[lane]->getPlr2Entity();
     }
     if (cur == nullptr) return false;
-    cur->setHealth(std::max(cur->getDFHEALTH(), cur->getHealth()+healing));
+    cur->setHealth(std::min(cur->getDFHEALTH(), cur->getHealth()+healing));
     return true;
 }

@@ -14,10 +14,7 @@ Card* MeteorShower::clone() const {
 }
 
 std::string MeteorShower::getDescription() const {
-    std::string s = std::format("--{}--\nCost: ${}\n\nDeal 1 damage to all enemies on the board",
-        name, cost
-    );
-    return s;
+    return "Deal 1 damage to all enemies on the board";
 }
 
 bool MeteorShower::onPlayed(MatchManager* manager, int lane) {

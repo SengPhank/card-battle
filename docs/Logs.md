@@ -5,7 +5,7 @@
 - Add more cards with unique abilities
 - Add more Heroes
 - Create a more sophisticated bot (Tricky bots, Cowardly bots, Aggressive bots)
-
+- (Bug) heal still shows when unhealable
 ## Jan 30
 Cleaned up the UI and added emojis to make it less text-crowded. 
 - UI now has colour feedback, telling you where you are able to use your cards

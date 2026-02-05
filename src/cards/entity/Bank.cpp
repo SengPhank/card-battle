@@ -10,10 +10,7 @@ Card* Bank::clone() const {
 }
 
 std::string Bank::getDescription() const {
-    std::string s = std::format("--{}--\nHp: {}, Atk: {}\nCost: ${}\n\nOn new match: Gain +1 Token",
-        name, health, attack, cost
-    );
-    return s;
+    return "On a new round, gain +1 token this turn";
 }
 
 void Bank::onNewRound(MatchManager* manager) {

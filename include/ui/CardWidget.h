@@ -13,6 +13,7 @@ private:
 
     wxStaticText* titleText;
     wxStaticText* statsText;
+    wxStaticText* descriptionText;
 
     bool selected = false;
 

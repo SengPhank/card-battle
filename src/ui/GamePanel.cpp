@@ -29,8 +29,7 @@ GamePanel::GamePanel(wxWindow* parent)
     selectedCard = nullptr;
     StoredMatch = nullptr;
     wxButton* selectedDeckButton = nullptr;
-    defaultColour = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNFACE);
-    defaultFG = wxSystemSettings::GetColour(wxSYS_COLOUR_BTNTEXT);
+    colourManager = wxCustomColours();
     // Init ui
     GamePanelHelper GPH;
     wxPanel* mainPanel = new wxPanel(this);
@@ -140,8 +139,8 @@ void GamePanel::RotateDeck(int page) {
     // Deselect any holding cards
     selectedCard = nullptr;
     selectedDeckButton = nullptr; 
-    LightLane(true, *defaultColour, *defaultFG);
-    LightLane(false, *defaultColour, *defaultFG);
+    LightLane(true, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
+    LightLane(false, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
 
 }
 
@@ -151,11 +150,11 @@ void GamePanel::UpdatePlayerStats(int newHP, int newPlayerTokens, int newRage) {
     yourTokens->SetLabel("Tokens: " + std::to_string(newPlayerTokens));
     yourRage->SetLabel("Rage: " + std::to_string(newRage) + "%");
     if (newRage == 100) {
-        yourRage->SetBackgroundColour(*wxGREEN);
-        yourRage->SetForegroundColour(*wxBLACK);
+        yourRage->SetBackgroundColour(*colourManager.query("green"));
+        yourRage->SetForegroundColour(*colourManager.query("black"));
     } else {
-        yourRage->SetBackgroundColour(defaultColour);
-        yourRage->SetForegroundColour(defaultFG);
+        yourRage->SetBackgroundColour(colourManager.query("defaultbg"));
+        yourRage->SetForegroundColour(colourManager.query("defaultfg"));
     }
     yourRage->Refresh();
 
@@ -189,14 +188,14 @@ void GamePanel::UpdateBoard(MainBoard* board) {
     }
 }
 void GamePanel::tapCard(CardWidget* widget, Card* card) {
-
+    LightLane(true, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
+    LightLane(false, *colourManager.query("defaultbg"), *colourManager.query("defaultfg"));
     // Deselect if clicking same card
     if (selectedCard == card) {
+        // std::cout << "deselected card: " << card->getName() << std::endl;
         widget->setSelected(false);
         selectedCard = nullptr;
 
-        LightLane(true, *defaultColour, *defaultFG);
-        LightLane(false, *defaultColour, *defaultFG);
         return;
     }
 
@@ -207,19 +206,29 @@ void GamePanel::tapCard(CardWidget* widget, Card* card) {
 
     selectedDeckButton = widget;
     selectedCard = card;
+    // std::cout << "selected card: " << card->getName() << std::endl;
 
     widget->setSelected(true);
-
+    
     // Highlight lanes
     if (card->getType() == Card::Type::INSTANT) {
-        InstantCard* curCard = (InstantCard*)card;
-        if (curCard->getUseEnemyEnt())
-            LightLane(false, *wxRED, *wxWHITE, 1);
-        if (curCard->getUseSelfEnt())
-            LightLane(true, *wxGREEN, *wxBLACK, 1);
+        InstantCard* curCard = dynamic_cast<InstantCard*>(card);
+        std::cout << "selected an instant card" << std::endl;
+        if (curCard->getUseEnemyEnt()) { // card usable on enemy
+            LightLane(false, *colourManager.query("red"), *colourManager.query("white"), 1);
+        }
+            
+        if (curCard->getUseSelfEnt()) { // card usable on self entity
+            LightLane(true, *colourManager.query("yellow"), *colourManager.query("black"), 1);
+        }
+
+        if (curCard->getUseAnyBoard()) { // card used anywhere
+            LightLane(true, *colourManager.query("purple"), *colourManager.query("white"));
+            LightLane(false, *colourManager.query("purple"), *colourManager.query("white"));
+        }
     }
-    else {
-        LightLane(true, *wxGREEN, *wxBLACK, 0);
+    else { // Only highlight placeable entity
+        LightLane(true, *colourManager.query("green"), *colourManager.query("black"), 0);
     }
 }
 

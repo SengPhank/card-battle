@@ -8,8 +8,5 @@ Card* Troll::clone() const {
 }
 
 std::string Troll::getDescription() const {
-    std::string s = std::format("--{}--\nHp: {}, Atk: {}\nCost: ${}\n\nJust a beefy guy",
-        name, health, attack, cost
-    );
-    return s;
+    return "Beefy";
 }
